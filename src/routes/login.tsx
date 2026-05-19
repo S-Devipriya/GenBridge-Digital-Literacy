@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { type FormEvent } from "react";
 
 export const Route = createFileRoute("/login")({
@@ -9,8 +9,14 @@ export const Route = createFileRoute("/login")({
 });
 
 function Login() {
+  const navigate = useNavigate();
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (typeof window !== "undefined") {
+      localStorage.setItem("genbridge_learner", "1");
+      window.dispatchEvent(new Event("genbridge-auth"));
+    }
+    navigate({ to: "/learner-dashboard" });
   }
   return (
     <>
