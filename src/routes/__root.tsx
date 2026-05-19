@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import genbridgeCss from "../genbridge.css?url";
 
 function NotFoundComponent() {
   return (
@@ -86,6 +87,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
+      {
+        rel: "stylesheet",
+        href: genbridgeCss,
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -113,7 +118,21 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <header className="header-bar">
+        <a href="/" className="brand-logo">☀ GenBridge</a>
+        <nav className="nav-links">
+          <a href="/login" className="nav-btn">Log In</a>
+        </nav>
+      </header>
+      <main className="main-container">
+        <Outlet />
+      </main>
+      <footer className="footer-bar">
+        <p>GenBridge Eco-Learning System. Designed explicitly for digital accessibility.</p>
+        <p>
+          Any Queries or Suggestions? <a href="/feedback">Share your feedback</a>
+        </p>
+      </footer>
     </QueryClientProvider>
   );
 }
