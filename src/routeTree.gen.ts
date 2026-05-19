@@ -12,10 +12,10 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as RegisterVolunteerRouteImport } from './routes/register-volunteer'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as LessonsRouteImport } from './routes/lessons'
+import { Route as LearningPathsRouteImport } from './routes/learning-paths'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as HelplineRouteImport } from './routes/helpline'
 import { Route as FeedbackRouteImport } from './routes/feedback'
-import { Route as CommunityMeetingsRouteImport } from './routes/community-meetings'
 import { Route as IndexRouteImport } from './routes/index'
 
 const RegisterVolunteerRoute = RegisterVolunteerRouteImport.update({
@@ -33,6 +33,11 @@ const LessonsRoute = LessonsRouteImport.update({
   path: '/lessons',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LearningPathsRoute = LearningPathsRouteImport.update({
+  id: '/learning-paths',
+  path: '/learning-paths',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HomeRoute = HomeRouteImport.update({
   id: '/home',
   path: '/home',
@@ -48,11 +53,6 @@ const FeedbackRoute = FeedbackRouteImport.update({
   path: '/feedback',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CommunityMeetingsRoute = CommunityMeetingsRouteImport.update({
-  id: '/community-meetings',
-  path: '/community-meetings',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -61,20 +61,20 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/community-meetings': typeof CommunityMeetingsRoute
   '/feedback': typeof FeedbackRoute
   '/helpline': typeof HelplineRoute
   '/home': typeof HomeRoute
+  '/learning-paths': typeof LearningPathsRoute
   '/lessons': typeof LessonsRoute
   '/login': typeof LoginRoute
   '/register-volunteer': typeof RegisterVolunteerRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/community-meetings': typeof CommunityMeetingsRoute
   '/feedback': typeof FeedbackRoute
   '/helpline': typeof HelplineRoute
   '/home': typeof HomeRoute
+  '/learning-paths': typeof LearningPathsRoute
   '/lessons': typeof LessonsRoute
   '/login': typeof LoginRoute
   '/register-volunteer': typeof RegisterVolunteerRoute
@@ -82,10 +82,10 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/community-meetings': typeof CommunityMeetingsRoute
   '/feedback': typeof FeedbackRoute
   '/helpline': typeof HelplineRoute
   '/home': typeof HomeRoute
+  '/learning-paths': typeof LearningPathsRoute
   '/lessons': typeof LessonsRoute
   '/login': typeof LoginRoute
   '/register-volunteer': typeof RegisterVolunteerRoute
@@ -94,30 +94,30 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/community-meetings'
     | '/feedback'
     | '/helpline'
     | '/home'
+    | '/learning-paths'
     | '/lessons'
     | '/login'
     | '/register-volunteer'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/community-meetings'
     | '/feedback'
     | '/helpline'
     | '/home'
+    | '/learning-paths'
     | '/lessons'
     | '/login'
     | '/register-volunteer'
   id:
     | '__root__'
     | '/'
-    | '/community-meetings'
     | '/feedback'
     | '/helpline'
     | '/home'
+    | '/learning-paths'
     | '/lessons'
     | '/login'
     | '/register-volunteer'
@@ -125,10 +125,10 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CommunityMeetingsRoute: typeof CommunityMeetingsRoute
   FeedbackRoute: typeof FeedbackRoute
   HelplineRoute: typeof HelplineRoute
   HomeRoute: typeof HomeRoute
+  LearningPathsRoute: typeof LearningPathsRoute
   LessonsRoute: typeof LessonsRoute
   LoginRoute: typeof LoginRoute
   RegisterVolunteerRoute: typeof RegisterVolunteerRoute
@@ -157,6 +157,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LessonsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/learning-paths': {
+      id: '/learning-paths'
+      path: '/learning-paths'
+      fullPath: '/learning-paths'
+      preLoaderRoute: typeof LearningPathsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/home': {
       id: '/home'
       path: '/home'
@@ -178,13 +185,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FeedbackRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/community-meetings': {
-      id: '/community-meetings'
-      path: '/community-meetings'
-      fullPath: '/community-meetings'
-      preLoaderRoute: typeof CommunityMeetingsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -197,10 +197,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CommunityMeetingsRoute: CommunityMeetingsRoute,
   FeedbackRoute: FeedbackRoute,
   HelplineRoute: HelplineRoute,
   HomeRoute: HomeRoute,
+  LearningPathsRoute: LearningPathsRoute,
   LessonsRoute: LessonsRoute,
   LoginRoute: LoginRoute,
   RegisterVolunteerRoute: RegisterVolunteerRoute,
@@ -208,3 +208,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
