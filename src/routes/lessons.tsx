@@ -6,15 +6,19 @@ export const Route = createFileRoute("/lessons")({
   component: Lessons,
 });
 
-type LessonType = "All" | "Videos" | "Articles" | "Tryouts" | "Learning Paths";
+type LessonType = "All" | "Videos" | "Articles" | "Tryouts";
 
-const FILTERS: LessonType[] = ["All", "Videos", "Articles", "Tryouts", "Learning Paths"];
+const FILTERS: { label: LessonType; cls: string }[] = [
+  { label: "All", cls: "" },
+  { label: "Videos", cls: "chip-videos" },
+  { label: "Articles", cls: "chip-articles" },
+  { label: "Tryouts", cls: "chip-tryouts" },
+];
 
 const LESSONS: { title: string; type: Exclude<LessonType, "All">; desc: string; cta: string; icon: string; tag: string; tagClass: string }[] = [
   { title: "What is Logging in?", type: "Articles", desc: "Learn how usernames and passwords keep you safe online.", cta: "Read Guide", icon: "📄", tag: "Read", tagClass: "read-tag" },
   { title: "Join a Google Meet", type: "Videos", desc: "Step-by-step video on joining a meeting from your device.", cta: "Watch Video", icon: "▶", tag: "Watch", tagClass: "watch-tag" },
   { title: "Practice Sending a Payment", type: "Tryouts", desc: "Try a safe fake wallet — no real money used.", cta: "Start Activity", icon: "🚀", tag: "Try", tagClass: "try-tag" },
-  { title: "Digital Basics Course", type: "Learning Paths", desc: "A full course covering the digital essentials.", cta: "Open Path", icon: "🎓", tag: "Path", tagClass: "welcome-tag" },
   { title: "Spotting Online Scams", type: "Articles", desc: "Common scams and how to avoid them.", cta: "Read Guide", icon: "📄", tag: "Read", tagClass: "read-tag" },
   { title: "Sending a WhatsApp Voice Note", type: "Videos", desc: "Record and send your first voice message.", cta: "Watch Video", icon: "▶", tag: "Watch", tagClass: "watch-tag" },
 ];
@@ -23,7 +27,9 @@ function Lessons() {
   const [filter, setFilter] = useState<LessonType>("All");
   const [query, setQuery] = useState("");
 
-  const visible = filter === "All" ? LESSONS : LESSONS.filter((l) => l.type === filter);
+  const visible = filter === "All"
+    ? LESSONS
+    : LESSONS.filter((l) => l.type === filter);
 
   function handleVoice() {
     alert("Voice search coming soon — please tell us what you want to learn.");
@@ -53,21 +59,17 @@ function Lessons() {
         <div className="lesson-filter-bar">
           {FILTERS.map((f) => (
             <button
-              key={f}
+              key={f.label}
               type="button"
-              className={`filter-chip${filter === f ? " is-active" : ""}`}
-              onClick={() => {
-                if (f === "Learning Paths") return;
-                setFilter(f);
-              }}
+              className={`filter-chip ${f.cls}${filter === f.label ? " is-active" : ""}`}
+              onClick={() => setFilter(f.label)}
             >
-              {f === "Learning Paths" ? (
-                <Link to="/learning-paths" style={{ color: "inherit", textDecoration: "none" }}>
-                  {f}
-                </Link>
-              ) : f}
+              {f.label}
             </button>
           ))}
+          <Link to="/learning-paths" className="filter-chip chip-paths">
+            Learning Paths
+          </Link>
         </div>
       </section>
 
@@ -99,11 +101,7 @@ function Lessons() {
               <h4 className="card-main-heading">{l.title}</h4>
               <p className="card-body-prose">{l.desc}</p>
               <div className="card-button-anchor">
-                {l.type === "Learning Paths" ? (
-                  <Link to="/learning-paths" className="card-primary-btn">{l.cta}</Link>
-                ) : (
-                  <button className="card-primary-btn">{l.cta}</button>
-                )}
+                <button className="card-primary-btn">{l.cta}</button>
               </div>
             </article>
           ))}

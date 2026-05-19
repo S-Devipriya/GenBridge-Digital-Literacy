@@ -25,14 +25,14 @@ function CommunityMeetings() {
       <div className="meeting-list">
         {MEETINGS.map((m) => (
           <article key={m.id} className="unified-panel meeting-row">
-            <Link to="/meeting-signup/$id" params={{ id: m.id }} className="meeting-signup-btn">
-              Sign Up
-            </Link>
             <div className="meeting-info">
               <h2 className="meeting-topic">{m.topic}</h2>
               <p className="meeting-detail">📅 {m.day}, {m.date}</p>
               <p className="meeting-detail">🕒 {m.time}</p>
             </div>
+            <Link to="/meeting-signup/$id" params={{ id: m.id }} className="meeting-signup-btn">
+              Sign Up
+            </Link>
           </article>
         ))}
       </div>
