@@ -18,8 +18,11 @@ import { Route as LearningPathsRouteImport } from './routes/learning-paths'
 import { Route as LearnerDashboardRouteImport } from './routes/learner-dashboard'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as HelplineRouteImport } from './routes/helpline'
+import { Route as GroupChatRouteImport } from './routes/group-chat'
 import { Route as FeedbackRouteImport } from './routes/feedback'
 import { Route as CommunityMeetingsRouteImport } from './routes/community-meetings'
+import { Route as BookmarksRouteImport } from './routes/bookmarks'
+import { Route as BadgesRouteImport } from './routes/badges'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MeetingSignupIdRouteImport } from './routes/meeting-signup.$id'
 
@@ -68,6 +71,11 @@ const HelplineRoute = HelplineRouteImport.update({
   path: '/helpline',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GroupChatRoute = GroupChatRouteImport.update({
+  id: '/group-chat',
+  path: '/group-chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FeedbackRoute = FeedbackRouteImport.update({
   id: '/feedback',
   path: '/feedback',
@@ -76,6 +84,16 @@ const FeedbackRoute = FeedbackRouteImport.update({
 const CommunityMeetingsRoute = CommunityMeetingsRouteImport.update({
   id: '/community-meetings',
   path: '/community-meetings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookmarksRoute = BookmarksRouteImport.update({
+  id: '/bookmarks',
+  path: '/bookmarks',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BadgesRoute = BadgesRouteImport.update({
+  id: '/badges',
+  path: '/badges',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -91,8 +109,11 @@ const MeetingSignupIdRoute = MeetingSignupIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/badges': typeof BadgesRoute
+  '/bookmarks': typeof BookmarksRoute
   '/community-meetings': typeof CommunityMeetingsRoute
   '/feedback': typeof FeedbackRoute
+  '/group-chat': typeof GroupChatRoute
   '/helpline': typeof HelplineRoute
   '/home': typeof HomeRoute
   '/learner-dashboard': typeof LearnerDashboardRoute
@@ -106,8 +127,11 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/badges': typeof BadgesRoute
+  '/bookmarks': typeof BookmarksRoute
   '/community-meetings': typeof CommunityMeetingsRoute
   '/feedback': typeof FeedbackRoute
+  '/group-chat': typeof GroupChatRoute
   '/helpline': typeof HelplineRoute
   '/home': typeof HomeRoute
   '/learner-dashboard': typeof LearnerDashboardRoute
@@ -122,8 +146,11 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/badges': typeof BadgesRoute
+  '/bookmarks': typeof BookmarksRoute
   '/community-meetings': typeof CommunityMeetingsRoute
   '/feedback': typeof FeedbackRoute
+  '/group-chat': typeof GroupChatRoute
   '/helpline': typeof HelplineRoute
   '/home': typeof HomeRoute
   '/learner-dashboard': typeof LearnerDashboardRoute
@@ -139,8 +166,11 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/badges'
+    | '/bookmarks'
     | '/community-meetings'
     | '/feedback'
+    | '/group-chat'
     | '/helpline'
     | '/home'
     | '/learner-dashboard'
@@ -154,8 +184,11 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/badges'
+    | '/bookmarks'
     | '/community-meetings'
     | '/feedback'
+    | '/group-chat'
     | '/helpline'
     | '/home'
     | '/learner-dashboard'
@@ -169,8 +202,11 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/badges'
+    | '/bookmarks'
     | '/community-meetings'
     | '/feedback'
+    | '/group-chat'
     | '/helpline'
     | '/home'
     | '/learner-dashboard'
@@ -185,8 +221,11 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BadgesRoute: typeof BadgesRoute
+  BookmarksRoute: typeof BookmarksRoute
   CommunityMeetingsRoute: typeof CommunityMeetingsRoute
   FeedbackRoute: typeof FeedbackRoute
+  GroupChatRoute: typeof GroupChatRoute
   HelplineRoute: typeof HelplineRoute
   HomeRoute: typeof HomeRoute
   LearnerDashboardRoute: typeof LearnerDashboardRoute
@@ -264,6 +303,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HelplineRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/group-chat': {
+      id: '/group-chat'
+      path: '/group-chat'
+      fullPath: '/group-chat'
+      preLoaderRoute: typeof GroupChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/feedback': {
       id: '/feedback'
       path: '/feedback'
@@ -276,6 +322,20 @@ declare module '@tanstack/react-router' {
       path: '/community-meetings'
       fullPath: '/community-meetings'
       preLoaderRoute: typeof CommunityMeetingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bookmarks': {
+      id: '/bookmarks'
+      path: '/bookmarks'
+      fullPath: '/bookmarks'
+      preLoaderRoute: typeof BookmarksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/badges': {
+      id: '/badges'
+      path: '/badges'
+      fullPath: '/badges'
+      preLoaderRoute: typeof BadgesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -297,8 +357,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BadgesRoute: BadgesRoute,
+  BookmarksRoute: BookmarksRoute,
   CommunityMeetingsRoute: CommunityMeetingsRoute,
   FeedbackRoute: FeedbackRoute,
+  GroupChatRoute: GroupChatRoute,
   HelplineRoute: HelplineRoute,
   HomeRoute: HomeRoute,
   LearnerDashboardRoute: LearnerDashboardRoute,
