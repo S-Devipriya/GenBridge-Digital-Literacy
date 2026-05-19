@@ -6,9 +6,14 @@ export const Route = createFileRoute("/lessons")({
   component: Lessons,
 });
 
-type LessonType = "All" | "Videos" | "Articles" | "Tryouts" | "Learning Paths";
+type LessonType = "All" | "Videos" | "Articles" | "Tryouts";
 
-const FILTERS: LessonType[] = ["All", "Videos", "Articles", "Tryouts", "Learning Paths"];
+const FILTERS: { label: LessonType; cls: string }[] = [
+  { label: "All", cls: "" },
+  { label: "Videos", cls: "chip-videos" },
+  { label: "Articles", cls: "chip-articles" },
+  { label: "Tryouts", cls: "chip-tryouts" },
+];
 
 const LESSONS: { title: string; type: Exclude<LessonType, "All">; desc: string; cta: string; icon: string; tag: string; tagClass: string }[] = [
   { title: "What is Logging in?", type: "Articles", desc: "Learn how usernames and passwords keep you safe online.", cta: "Read Guide", icon: "📄", tag: "Read", tagClass: "read-tag" },
@@ -23,7 +28,9 @@ function Lessons() {
   const [filter, setFilter] = useState<LessonType>("All");
   const [query, setQuery] = useState("");
 
-  const visible = filter === "All" ? LESSONS : LESSONS.filter((l) => l.type === filter);
+  const visible = filter === "All"
+    ? LESSONS.filter((l) => l.type !== "Learning Paths")
+    : LESSONS.filter((l) => l.type === filter);
 
   function handleVoice() {
     alert("Voice search coming soon — please tell us what you want to learn.");
@@ -53,21 +60,17 @@ function Lessons() {
         <div className="lesson-filter-bar">
           {FILTERS.map((f) => (
             <button
-              key={f}
+              key={f.label}
               type="button"
-              className={`filter-chip${filter === f ? " is-active" : ""}`}
-              onClick={() => {
-                if (f === "Learning Paths") return;
-                setFilter(f);
-              }}
+              className={`filter-chip ${f.cls}${filter === f.label ? " is-active" : ""}`}
+              onClick={() => setFilter(f.label)}
             >
-              {f === "Learning Paths" ? (
-                <Link to="/learning-paths" style={{ color: "inherit", textDecoration: "none" }}>
-                  {f}
-                </Link>
-              ) : f}
+              {f.label}
             </button>
           ))}
+          <Link to="/learning-paths" className="filter-chip chip-paths">
+            Learning Paths
+          </Link>
         </div>
       </section>
 
