@@ -34,7 +34,7 @@ function Home() {
           <span className="dashboard-card-label">Join Community Meetings</span>
         </Link>
         <Link
-          to="/register-volunteer"
+          to="/volunteer-login"
           className="dashboard-nav-card theme-pastel-purple"
         >
           <span className="dashboard-card-icon">💖</span>
