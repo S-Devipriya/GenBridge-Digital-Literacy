@@ -706,8 +706,16 @@ a {
     box-shadow: 0 1px 3px 0 rgba(0,0,0,0.08);
     transition: transform 0.15s ease;
 }
-.learner-big-btn:hover { transform: translateY(-2px); background-color: #ebd128; }
+.learner-big-btn:hover { transform: translateY(-2px); filter: brightness(0.96); }
 .learner-big-btn .big-btn-icon { font-size: 2.5rem; }
+
+/* Pastel variants for learner dashboard buttons */
+.learner-big-btn.theme-pastel-blue   { background-color: #dbeafe; }
+.learner-big-btn.theme-pastel-green  { background-color: #d1fae5; }
+.learner-big-btn.theme-pastel-purple { background-color: #f3e8ff; }
+.learner-big-btn.theme-pastel-orange { background-color: #ffedd5; }
+.learner-big-btn.theme-pastel-pink   { background-color: #fce7f3; }
+.learner-big-btn.theme-pastel-yellow { background-color: #fef3c7; }
 
 /* Account / settings icons in header */
 .icon-btn {
