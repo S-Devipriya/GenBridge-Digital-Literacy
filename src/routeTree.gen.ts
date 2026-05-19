@@ -15,6 +15,7 @@ import { Route as RegisterVolunteerRouteImport } from './routes/register-volunte
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as LessonsRouteImport } from './routes/lessons'
 import { Route as LearningPathsRouteImport } from './routes/learning-paths'
+import { Route as LearnerDashboardRouteImport } from './routes/learner-dashboard'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as HelplineRouteImport } from './routes/helpline'
 import { Route as FeedbackRouteImport } from './routes/feedback'
@@ -50,6 +51,11 @@ const LessonsRoute = LessonsRouteImport.update({
 const LearningPathsRoute = LearningPathsRouteImport.update({
   id: '/learning-paths',
   path: '/learning-paths',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnerDashboardRoute = LearnerDashboardRouteImport.update({
+  id: '/learner-dashboard',
+  path: '/learner-dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HomeRoute = HomeRouteImport.update({
@@ -89,6 +95,7 @@ export interface FileRoutesByFullPath {
   '/feedback': typeof FeedbackRoute
   '/helpline': typeof HelplineRoute
   '/home': typeof HomeRoute
+  '/learner-dashboard': typeof LearnerDashboardRoute
   '/learning-paths': typeof LearningPathsRoute
   '/lessons': typeof LessonsRoute
   '/login': typeof LoginRoute
@@ -103,6 +110,7 @@ export interface FileRoutesByTo {
   '/feedback': typeof FeedbackRoute
   '/helpline': typeof HelplineRoute
   '/home': typeof HomeRoute
+  '/learner-dashboard': typeof LearnerDashboardRoute
   '/learning-paths': typeof LearningPathsRoute
   '/lessons': typeof LessonsRoute
   '/login': typeof LoginRoute
@@ -118,6 +126,7 @@ export interface FileRoutesById {
   '/feedback': typeof FeedbackRoute
   '/helpline': typeof HelplineRoute
   '/home': typeof HomeRoute
+  '/learner-dashboard': typeof LearnerDashboardRoute
   '/learning-paths': typeof LearningPathsRoute
   '/lessons': typeof LessonsRoute
   '/login': typeof LoginRoute
@@ -134,6 +143,7 @@ export interface FileRouteTypes {
     | '/feedback'
     | '/helpline'
     | '/home'
+    | '/learner-dashboard'
     | '/learning-paths'
     | '/lessons'
     | '/login'
@@ -148,6 +158,7 @@ export interface FileRouteTypes {
     | '/feedback'
     | '/helpline'
     | '/home'
+    | '/learner-dashboard'
     | '/learning-paths'
     | '/lessons'
     | '/login'
@@ -162,6 +173,7 @@ export interface FileRouteTypes {
     | '/feedback'
     | '/helpline'
     | '/home'
+    | '/learner-dashboard'
     | '/learning-paths'
     | '/lessons'
     | '/login'
@@ -177,6 +189,7 @@ export interface RootRouteChildren {
   FeedbackRoute: typeof FeedbackRoute
   HelplineRoute: typeof HelplineRoute
   HomeRoute: typeof HomeRoute
+  LearnerDashboardRoute: typeof LearnerDashboardRoute
   LearningPathsRoute: typeof LearningPathsRoute
   LessonsRoute: typeof LessonsRoute
   LoginRoute: typeof LoginRoute
@@ -230,6 +243,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LearningPathsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/learner-dashboard': {
+      id: '/learner-dashboard'
+      path: '/learner-dashboard'
+      fullPath: '/learner-dashboard'
+      preLoaderRoute: typeof LearnerDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/home': {
       id: '/home'
       path: '/home'
@@ -281,6 +301,7 @@ const rootRouteChildren: RootRouteChildren = {
   FeedbackRoute: FeedbackRoute,
   HelplineRoute: HelplineRoute,
   HomeRoute: HomeRoute,
+  LearnerDashboardRoute: LearnerDashboardRoute,
   LearningPathsRoute: LearningPathsRoute,
   LessonsRoute: LessonsRoute,
   LoginRoute: LoginRoute,
@@ -292,3 +313,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
