@@ -27,6 +27,11 @@ function LearningPaths() {
       <div className="course-list">
         {COURSES.map((c) => (
           <article key={c.name} className="unified-panel course-row">
+            <div className="course-info-block">
+              <h2 className="course-title">{c.name}</h2>
+              <p className="course-meta"><strong>{c.lessons}</strong> lessons</p>
+              <p className="course-meta">Estimated time: <strong>{c.hours} hours</strong></p>
+            </div>
             <div className="course-cta-block">
               <div className="course-progress-track">
                 <div className="course-progress-fill" style={{ width: `${c.progress}%` }} />
@@ -35,11 +40,6 @@ function LearningPaths() {
               <button type="button" className="course-start-btn">
                 {c.progress > 0 ? "Continue" : "Start"}
               </button>
-            </div>
-            <div className="course-info-block">
-              <h2 className="course-title">{c.name}</h2>
-              <p className="course-meta"><strong>{c.lessons}</strong> lessons</p>
-              <p className="course-meta">Estimated time: <strong>{c.hours} hours</strong></p>
             </div>
           </article>
         ))}
