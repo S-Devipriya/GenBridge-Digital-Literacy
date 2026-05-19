@@ -101,11 +101,7 @@ function Lessons() {
               <h4 className="card-main-heading">{l.title}</h4>
               <p className="card-body-prose">{l.desc}</p>
               <div className="card-button-anchor">
-                {l.type === "Learning Paths" ? (
-                  <Link to="/learning-paths" className="card-primary-btn">{l.cta}</Link>
-                ) : (
-                  <button className="card-primary-btn">{l.cta}</button>
-                )}
+                <button className="card-primary-btn">{l.cta}</button>
               </div>
             </article>
           ))}
