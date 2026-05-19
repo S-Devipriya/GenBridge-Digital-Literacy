@@ -19,7 +19,6 @@ const LESSONS: { title: string; type: Exclude<LessonType, "All">; desc: string; 
   { title: "What is Logging in?", type: "Articles", desc: "Learn how usernames and passwords keep you safe online.", cta: "Read Guide", icon: "📄", tag: "Read", tagClass: "read-tag" },
   { title: "Join a Google Meet", type: "Videos", desc: "Step-by-step video on joining a meeting from your device.", cta: "Watch Video", icon: "▶", tag: "Watch", tagClass: "watch-tag" },
   { title: "Practice Sending a Payment", type: "Tryouts", desc: "Try a safe fake wallet — no real money used.", cta: "Start Activity", icon: "🚀", tag: "Try", tagClass: "try-tag" },
-  { title: "Digital Basics Course", type: "Learning Paths", desc: "A full course covering the digital essentials.", cta: "Open Path", icon: "🎓", tag: "Path", tagClass: "welcome-tag" },
   { title: "Spotting Online Scams", type: "Articles", desc: "Common scams and how to avoid them.", cta: "Read Guide", icon: "📄", tag: "Read", tagClass: "read-tag" },
   { title: "Sending a WhatsApp Voice Note", type: "Videos", desc: "Record and send your first voice message.", cta: "Watch Video", icon: "▶", tag: "Watch", tagClass: "watch-tag" },
 ];
@@ -29,7 +28,7 @@ function Lessons() {
   const [query, setQuery] = useState("");
 
   const visible = filter === "All"
-    ? LESSONS.filter((l) => l.type !== "Learning Paths")
+    ? LESSONS
     : LESSONS.filter((l) => l.type === filter);
 
   function handleVoice() {
