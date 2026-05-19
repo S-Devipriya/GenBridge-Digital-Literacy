@@ -9,11 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RegisterVolunteerRouteImport } from './routes/register-volunteer'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as LessonsRouteImport } from './routes/lessons'
 import { Route as HomeRouteImport } from './routes/home'
+import { Route as HelplineRouteImport } from './routes/helpline'
 import { Route as FeedbackRouteImport } from './routes/feedback'
+import { Route as CommunityMeetingsRouteImport } from './routes/community-meetings'
 import { Route as IndexRouteImport } from './routes/index'
 
+const RegisterVolunteerRoute = RegisterVolunteerRouteImport.update({
+  id: '/register-volunteer',
+  path: '/register-volunteer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LessonsRoute = LessonsRouteImport.update({
   id: '/lessons',
   path: '/lessons',
@@ -24,9 +38,19 @@ const HomeRoute = HomeRouteImport.update({
   path: '/home',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HelplineRoute = HelplineRouteImport.update({
+  id: '/helpline',
+  path: '/helpline',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FeedbackRoute = FeedbackRouteImport.update({
   id: '/feedback',
   path: '/feedback',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunityMeetingsRoute = CommunityMeetingsRouteImport.update({
+  id: '/community-meetings',
+  path: '/community-meetings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -37,40 +61,95 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/community-meetings': typeof CommunityMeetingsRoute
   '/feedback': typeof FeedbackRoute
+  '/helpline': typeof HelplineRoute
   '/home': typeof HomeRoute
   '/lessons': typeof LessonsRoute
+  '/login': typeof LoginRoute
+  '/register-volunteer': typeof RegisterVolunteerRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/community-meetings': typeof CommunityMeetingsRoute
   '/feedback': typeof FeedbackRoute
+  '/helpline': typeof HelplineRoute
   '/home': typeof HomeRoute
   '/lessons': typeof LessonsRoute
+  '/login': typeof LoginRoute
+  '/register-volunteer': typeof RegisterVolunteerRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/community-meetings': typeof CommunityMeetingsRoute
   '/feedback': typeof FeedbackRoute
+  '/helpline': typeof HelplineRoute
   '/home': typeof HomeRoute
   '/lessons': typeof LessonsRoute
+  '/login': typeof LoginRoute
+  '/register-volunteer': typeof RegisterVolunteerRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/feedback' | '/home' | '/lessons'
+  fullPaths:
+    | '/'
+    | '/community-meetings'
+    | '/feedback'
+    | '/helpline'
+    | '/home'
+    | '/lessons'
+    | '/login'
+    | '/register-volunteer'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/feedback' | '/home' | '/lessons'
-  id: '__root__' | '/' | '/feedback' | '/home' | '/lessons'
+  to:
+    | '/'
+    | '/community-meetings'
+    | '/feedback'
+    | '/helpline'
+    | '/home'
+    | '/lessons'
+    | '/login'
+    | '/register-volunteer'
+  id:
+    | '__root__'
+    | '/'
+    | '/community-meetings'
+    | '/feedback'
+    | '/helpline'
+    | '/home'
+    | '/lessons'
+    | '/login'
+    | '/register-volunteer'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CommunityMeetingsRoute: typeof CommunityMeetingsRoute
   FeedbackRoute: typeof FeedbackRoute
+  HelplineRoute: typeof HelplineRoute
   HomeRoute: typeof HomeRoute
   LessonsRoute: typeof LessonsRoute
+  LoginRoute: typeof LoginRoute
+  RegisterVolunteerRoute: typeof RegisterVolunteerRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/register-volunteer': {
+      id: '/register-volunteer'
+      path: '/register-volunteer'
+      fullPath: '/register-volunteer'
+      preLoaderRoute: typeof RegisterVolunteerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lessons': {
       id: '/lessons'
       path: '/lessons'
@@ -85,11 +164,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HomeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/helpline': {
+      id: '/helpline'
+      path: '/helpline'
+      fullPath: '/helpline'
+      preLoaderRoute: typeof HelplineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/feedback': {
       id: '/feedback'
       path: '/feedback'
       fullPath: '/feedback'
       preLoaderRoute: typeof FeedbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/community-meetings': {
+      id: '/community-meetings'
+      path: '/community-meetings'
+      fullPath: '/community-meetings'
+      preLoaderRoute: typeof CommunityMeetingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -104,10 +197,24 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CommunityMeetingsRoute: CommunityMeetingsRoute,
   FeedbackRoute: FeedbackRoute,
+  HelplineRoute: HelplineRoute,
   HomeRoute: HomeRoute,
   LessonsRoute: LessonsRoute,
+  LoginRoute: LoginRoute,
+  RegisterVolunteerRoute: RegisterVolunteerRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
