@@ -4,9 +4,11 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useNavigate,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 
 import appCss from "../styles.css?url";
 import genbridgeCss from "../genbridge.css?url";
@@ -115,13 +117,40 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const navigate = useNavigate();
+  const [isLearner, setIsLearner] = useState(false);
+
+  useEffect(() => {
+    const read = () => setIsLearner(localStorage.getItem("genbridge_learner") === "1");
+    read();
+    window.addEventListener("genbridge-auth", read);
+    window.addEventListener("storage", read);
+    return () => {
+      window.removeEventListener("genbridge-auth", read);
+      window.removeEventListener("storage", read);
+    };
+  }, []);
+
+  function logout() {
+    localStorage.removeItem("genbridge_learner");
+    window.dispatchEvent(new Event("genbridge-auth"));
+    navigate({ to: "/" });
+  }
 
   return (
     <QueryClientProvider client={queryClient}>
       <header className="header-bar">
         <Link to="/" className="brand-logo">☀ GenBridge</Link>
         <nav className="nav-links">
-          <Link to="/login" className="nav-btn">Log In</Link>
+          {isLearner ? (
+            <>
+              <Link to="/learner-dashboard" className="icon-btn" aria-label="My Account" title="My Account">👤</Link>
+              <Link to="/learner-dashboard" className="icon-btn" aria-label="Settings" title="Settings">⚙️</Link>
+              <button type="button" className="nav-btn" onClick={logout}>Log Out</button>
+            </>
+          ) : (
+            <Link to="/login" className="nav-btn">Log In</Link>
+          )}
         </nav>
       </header>
       <main className="main-container">
