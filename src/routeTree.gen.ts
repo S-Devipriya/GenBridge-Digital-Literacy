@@ -9,18 +9,20 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as RegisterVolunteerRouteImport } from './routes/register-volunteer'
+import { Route as VolunteerLoginRouteImport } from './routes/volunteer-login'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as LessonsRouteImport } from './routes/lessons'
 import { Route as LearningPathsRouteImport } from './routes/learning-paths'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as HelplineRouteImport } from './routes/helpline'
 import { Route as FeedbackRouteImport } from './routes/feedback'
+import { Route as CommunityMeetingsRouteImport } from './routes/community-meetings'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MeetingSignupIdRouteImport } from './routes/meeting-signup.$id'
 
-const RegisterVolunteerRoute = RegisterVolunteerRouteImport.update({
-  id: '/register-volunteer',
-  path: '/register-volunteer',
+const VolunteerLoginRoute = VolunteerLoginRouteImport.update({
+  id: '/volunteer-login',
+  path: '/volunteer-login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -53,94 +55,118 @@ const FeedbackRoute = FeedbackRouteImport.update({
   path: '/feedback',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CommunityMeetingsRoute = CommunityMeetingsRouteImport.update({
+  id: '/community-meetings',
+  path: '/community-meetings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MeetingSignupIdRoute = MeetingSignupIdRouteImport.update({
+  id: '/meeting-signup/$id',
+  path: '/meeting-signup/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/community-meetings': typeof CommunityMeetingsRoute
   '/feedback': typeof FeedbackRoute
   '/helpline': typeof HelplineRoute
   '/home': typeof HomeRoute
   '/learning-paths': typeof LearningPathsRoute
   '/lessons': typeof LessonsRoute
   '/login': typeof LoginRoute
-  '/register-volunteer': typeof RegisterVolunteerRoute
+  '/volunteer-login': typeof VolunteerLoginRoute
+  '/meeting-signup/$id': typeof MeetingSignupIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/community-meetings': typeof CommunityMeetingsRoute
   '/feedback': typeof FeedbackRoute
   '/helpline': typeof HelplineRoute
   '/home': typeof HomeRoute
   '/learning-paths': typeof LearningPathsRoute
   '/lessons': typeof LessonsRoute
   '/login': typeof LoginRoute
-  '/register-volunteer': typeof RegisterVolunteerRoute
+  '/volunteer-login': typeof VolunteerLoginRoute
+  '/meeting-signup/$id': typeof MeetingSignupIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/community-meetings': typeof CommunityMeetingsRoute
   '/feedback': typeof FeedbackRoute
   '/helpline': typeof HelplineRoute
   '/home': typeof HomeRoute
   '/learning-paths': typeof LearningPathsRoute
   '/lessons': typeof LessonsRoute
   '/login': typeof LoginRoute
-  '/register-volunteer': typeof RegisterVolunteerRoute
+  '/volunteer-login': typeof VolunteerLoginRoute
+  '/meeting-signup/$id': typeof MeetingSignupIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/community-meetings'
     | '/feedback'
     | '/helpline'
     | '/home'
     | '/learning-paths'
     | '/lessons'
     | '/login'
-    | '/register-volunteer'
+    | '/volunteer-login'
+    | '/meeting-signup/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/community-meetings'
     | '/feedback'
     | '/helpline'
     | '/home'
     | '/learning-paths'
     | '/lessons'
     | '/login'
-    | '/register-volunteer'
+    | '/volunteer-login'
+    | '/meeting-signup/$id'
   id:
     | '__root__'
     | '/'
+    | '/community-meetings'
     | '/feedback'
     | '/helpline'
     | '/home'
     | '/learning-paths'
     | '/lessons'
     | '/login'
-    | '/register-volunteer'
+    | '/volunteer-login'
+    | '/meeting-signup/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CommunityMeetingsRoute: typeof CommunityMeetingsRoute
   FeedbackRoute: typeof FeedbackRoute
   HelplineRoute: typeof HelplineRoute
   HomeRoute: typeof HomeRoute
   LearningPathsRoute: typeof LearningPathsRoute
   LessonsRoute: typeof LessonsRoute
   LoginRoute: typeof LoginRoute
-  RegisterVolunteerRoute: typeof RegisterVolunteerRoute
+  VolunteerLoginRoute: typeof VolunteerLoginRoute
+  MeetingSignupIdRoute: typeof MeetingSignupIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/register-volunteer': {
-      id: '/register-volunteer'
-      path: '/register-volunteer'
-      fullPath: '/register-volunteer'
-      preLoaderRoute: typeof RegisterVolunteerRouteImport
+    '/volunteer-login': {
+      id: '/volunteer-login'
+      path: '/volunteer-login'
+      fullPath: '/volunteer-login'
+      preLoaderRoute: typeof VolunteerLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -185,6 +211,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FeedbackRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/community-meetings': {
+      id: '/community-meetings'
+      path: '/community-meetings'
+      fullPath: '/community-meetings'
+      preLoaderRoute: typeof CommunityMeetingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -192,18 +225,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/meeting-signup/$id': {
+      id: '/meeting-signup/$id'
+      path: '/meeting-signup/$id'
+      fullPath: '/meeting-signup/$id'
+      preLoaderRoute: typeof MeetingSignupIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CommunityMeetingsRoute: CommunityMeetingsRoute,
   FeedbackRoute: FeedbackRoute,
   HelplineRoute: HelplineRoute,
   HomeRoute: HomeRoute,
   LearningPathsRoute: LearningPathsRoute,
   LessonsRoute: LessonsRoute,
   LoginRoute: LoginRoute,
-  RegisterVolunteerRoute: RegisterVolunteerRoute,
+  VolunteerLoginRoute: VolunteerLoginRoute,
+  MeetingSignupIdRoute: MeetingSignupIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
