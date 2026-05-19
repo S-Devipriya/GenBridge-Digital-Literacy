@@ -119,9 +119,9 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <header className="header-bar">
-        <a href="/" className="brand-logo">☀ GenBridge</a>
+        <Link to="/" className="brand-logo">☀ GenBridge</Link>
         <nav className="nav-links">
-          <a href="/login" className="nav-btn">Log In</a>
+          <Link to="/login" className="nav-btn">Log In</Link>
         </nav>
       </header>
       <main className="main-container">
@@ -130,8 +130,10 @@ function RootComponent() {
       <footer className="footer-bar">
         <p>GenBridge Eco-Learning System. Designed explicitly for digital accessibility.</p>
         <p>
-          Any Queries or Suggestions? <a href="/feedback">Share your feedback</a>
+          Any Queries or Suggestions?{" "}
+          <Link to="/feedback">Share your feedback</Link>
         </p>
+        <Link to="/register-volunteer">Register as Volunteer</Link>
       </footer>
     </QueryClientProvider>
   );
