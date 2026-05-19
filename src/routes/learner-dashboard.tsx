@@ -31,15 +31,15 @@ function LearnerDashboard() {
       </section>
 
       <div className="learner-big-buttons">
-        <Link to="/lessons" className="learner-big-btn">
+        <Link to="/lessons" className="learner-big-btn theme-pastel-blue">
           <span className="big-btn-icon">📖</span>
           Go Back to Lessons
         </Link>
-        <Link to="/community-meetings" className="learner-big-btn">
+        <Link to="/community-meetings" className="learner-big-btn theme-pastel-green">
           <span className="big-btn-icon">📅</span>
           Upcoming Meetings
         </Link>
-        <Link to="/bookmarks" className="learner-big-btn">
+        <Link to="/bookmarks" className="learner-big-btn theme-pastel-pink">
           <span className="big-btn-icon">🔖</span>
           My Bookmarks
         </Link>
@@ -54,12 +54,16 @@ function LearnerDashboard() {
         ))}
       </section>
 
-      <div className="learner-big-buttons" style={{ gridTemplateColumns: "1fr 1fr" }}>
-        <Link to="/group-chat" className="learner-big-btn">
+      <div className="learner-big-buttons">
+        <Link to="/learning-paths" className="learner-big-btn theme-pastel-yellow">
+          <span className="big-btn-icon">📈</span>
+          My Progress
+        </Link>
+        <Link to="/group-chat" className="learner-big-btn theme-pastel-purple">
           <span className="big-btn-icon">💬</span>
           Group Chat
         </Link>
-        <Link to="/feedback" className="learner-big-btn">
+        <Link to="/feedback" className="learner-big-btn theme-pastel-orange">
           <span className="big-btn-icon">📝</span>
           Feedback History
         </Link>
