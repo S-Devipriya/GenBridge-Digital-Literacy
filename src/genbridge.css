@@ -142,6 +142,8 @@ a {
 
 .search-text-input {
     width: 100%;
+    flex: 1;
+    min-width: 0;
     padding: 1rem;
     font-size: 1.25rem;
     font-weight: 500;
@@ -163,6 +165,9 @@ a {
     transition: background-color 0.15s ease;
     margin:0;
 }
+
+.search-action-btn,
+.voice-search-btn { flex-shrink: 0; }
 
 .search-action-btn:hover {
     background-color: #1e293b;
@@ -619,7 +624,9 @@ a {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    padding: 0 1rem 1rem 1rem;
+    padding: 1rem 0 0 0;
+    margin-top: 0.5rem;
+    border-top: 1px solid #e2e8f0;
 }
 .filter-chip {
     background-color: #f1f5f9;
@@ -638,6 +645,127 @@ a {
     color: #ffffff;
     border-color: #0f172a;
 }
+/* Per-type filter chip colors */
+.filter-chip.chip-videos   { background-color: #dbeafe; color: #1e40af; border-color: #93c5fd; }
+.filter-chip.chip-articles { background-color: #f3e8ff; color: #6b21a8; border-color: #d8b4fe; }
+.filter-chip.chip-tryouts  { background-color: #ffedd5; color: #9a3412; border-color: #fdba74; }
+.filter-chip.chip-paths    { background-color: #f4dc40; color: #0f172a; border-color: #e6c92a; }
+.filter-chip.chip-paths:hover { background-color: #ebd128; }
+.filter-chip.is-active.chip-videos   { background-color: #1e40af; color: #fff; border-color: #1e40af; }
+.filter-chip.is-active.chip-articles { background-color: #6b21a8; color: #fff; border-color: #6b21a8; }
+.filter-chip.is-active.chip-tryouts  { background-color: #9a3412; color: #fff; border-color: #9a3412; }
+
+/* ==========================================================================
+   LEARNER DASHBOARD
+   ========================================================================== */
+.learner-profile-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    flex-wrap: wrap;
+}
+.learner-profile-left {
+    display: flex; align-items: center; gap: 1.25rem;
+}
+.learner-level-badge {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0.25rem;
+    background-color: #fef3c7;
+    color: #92400e;
+    padding: 0.75rem 1.5rem;
+    border-radius: 1rem;
+    border: 2px solid #f4dc40;
+    min-width: 8rem;
+}
+.learner-level-icon { font-size: 2rem; }
+.learner-level-title { font-size: 1.125rem; font-weight: 800; margin: 0; }
+
+.learner-big-buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+@media (min-width: 640px) {
+    .learner-big-buttons { grid-template-columns: repeat(3, 1fr); }
+}
+.learner-big-btn {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0.75rem;
+    padding: 2.5rem 1rem;
+    background-color: #f4dc40;
+    color: #0f172a;
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 1rem;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.08);
+    transition: transform 0.15s ease;
+}
+.learner-big-btn:hover { transform: translateY(-2px); background-color: #ebd128; }
+.learner-big-btn .big-btn-icon { font-size: 2.5rem; }
+
+/* Account / settings icons in header */
+.icon-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px;
+    background-color: #1e293b;
+    color: #f4dc40;
+    border: none;
+    border-radius: 999px;
+    font-size: 1.25rem;
+    cursor: pointer;
+    text-decoration: none;
+    min-height: 44px;
+}
+.icon-btn:hover { background-color: #334155; }
+
+/* ==========================================================================
+   GROUP CHAT / FORUM
+   ========================================================================== */
+.forum-compose {
+    display: flex; flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.5rem;
+}
+.forum-compose-row {
+    display: flex; flex-direction: column;
+    gap: 0.75rem;
+}
+@media (min-width: 640px) {
+    .forum-compose-row { flex-direction: row; align-items: center; }
+    .forum-compose-row .search-text-input { flex: 1; }
+}
+.forum-category-tabs {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    padding: 0.5rem 0;
+}
+.forum-tab {
+    background-color: #f1f5f9; color: #0f172a;
+    font-weight: 700; font-size: 1.125rem;
+    padding: 0.5rem 1.25rem;
+    border: 2px solid #cbd5e1;
+    border-radius: 999px;
+    cursor: pointer;
+}
+.forum-tab.is-active {
+    background-color: #0f172a; color: #fff; border-color: #0f172a;
+}
+.forum-posts { display: flex; flex-direction: column; gap: 0.75rem; }
+.forum-post {
+    padding: 1.25rem;
+    display: flex; flex-direction: column; gap: 0.4rem;
+}
+.forum-post-meta {
+    display: flex; justify-content: space-between;
+    font-size: 0.95rem; color: #475569; font-weight: 600;
+}
+.forum-post-title { font-size: 1.25rem; font-weight: 700; color: #0f172a; margin: 0; }
+.forum-post-preview { font-size: 1rem; color: #475569; margin: 0; }
 .voice-search-btn {
     background-color: #f4dc40;
     color: #0f172a;
