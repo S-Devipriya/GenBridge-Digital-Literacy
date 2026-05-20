@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/home")({
   head: () => ({
@@ -8,6 +8,10 @@ export const Route = createFileRoute("/home")({
 });
 
 function Home() {
+  const navigate = useNavigate();
+  const handleVoice = () => {
+    alert("Voice search coming soon!");
+  };
   return (
     <>
       <section className="unified-panel welcome-landing-container welcome-tight welcome-tighter">
@@ -31,9 +35,21 @@ function Home() {
             placeholder="Search lessons, meetings, or digital skills..."
             className="search-text-input"
           />
-          <Link to="/lessons" className="search-action-btn search-icon-only" aria-label="Search">
-            🔍
-          </Link>
+          <button
+            type="button"
+            className="voice-search-btn voice-as-search"
+            onClick={handleVoice}
+            aria-label="Voice search"
+          >
+            🎤 Voice
+          </button>
+          <button
+            type="submit"
+            className="search-action-btn"
+            onClick={() => navigate({ to: "/lessons" })}
+          >
+            Search
+          </button>
         </form>
       </section>
 
