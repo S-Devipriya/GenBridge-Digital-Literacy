@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as VolunteerLoginRouteImport } from './routes/volunteer-login'
 import { Route as VolunteerDashboardRouteImport } from './routes/volunteer-dashboard'
 import { Route as RegisterVolunteerRouteImport } from './routes/register-volunteer'
+import { Route as RegisterRouteImport } from './routes/register'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as LessonsRouteImport } from './routes/lessons'
 import { Route as LearningPathsRouteImport } from './routes/learning-paths'
@@ -39,6 +40,11 @@ const VolunteerDashboardRoute = VolunteerDashboardRouteImport.update({
 const RegisterVolunteerRoute = RegisterVolunteerRouteImport.update({
   id: '/register-volunteer',
   path: '/register-volunteer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -120,6 +126,7 @@ export interface FileRoutesByFullPath {
   '/learning-paths': typeof LearningPathsRoute
   '/lessons': typeof LessonsRoute
   '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
   '/register-volunteer': typeof RegisterVolunteerRoute
   '/volunteer-dashboard': typeof VolunteerDashboardRoute
   '/volunteer-login': typeof VolunteerLoginRoute
@@ -138,6 +145,7 @@ export interface FileRoutesByTo {
   '/learning-paths': typeof LearningPathsRoute
   '/lessons': typeof LessonsRoute
   '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
   '/register-volunteer': typeof RegisterVolunteerRoute
   '/volunteer-dashboard': typeof VolunteerDashboardRoute
   '/volunteer-login': typeof VolunteerLoginRoute
@@ -157,6 +165,7 @@ export interface FileRoutesById {
   '/learning-paths': typeof LearningPathsRoute
   '/lessons': typeof LessonsRoute
   '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
   '/register-volunteer': typeof RegisterVolunteerRoute
   '/volunteer-dashboard': typeof VolunteerDashboardRoute
   '/volunteer-login': typeof VolunteerLoginRoute
@@ -177,6 +186,7 @@ export interface FileRouteTypes {
     | '/learning-paths'
     | '/lessons'
     | '/login'
+    | '/register'
     | '/register-volunteer'
     | '/volunteer-dashboard'
     | '/volunteer-login'
@@ -195,6 +205,7 @@ export interface FileRouteTypes {
     | '/learning-paths'
     | '/lessons'
     | '/login'
+    | '/register'
     | '/register-volunteer'
     | '/volunteer-dashboard'
     | '/volunteer-login'
@@ -213,6 +224,7 @@ export interface FileRouteTypes {
     | '/learning-paths'
     | '/lessons'
     | '/login'
+    | '/register'
     | '/register-volunteer'
     | '/volunteer-dashboard'
     | '/volunteer-login'
@@ -232,6 +244,7 @@ export interface RootRouteChildren {
   LearningPathsRoute: typeof LearningPathsRoute
   LessonsRoute: typeof LessonsRoute
   LoginRoute: typeof LoginRoute
+  RegisterRoute: typeof RegisterRoute
   RegisterVolunteerRoute: typeof RegisterVolunteerRoute
   VolunteerDashboardRoute: typeof VolunteerDashboardRoute
   VolunteerLoginRoute: typeof VolunteerLoginRoute
@@ -259,6 +272,13 @@ declare module '@tanstack/react-router' {
       path: '/register-volunteer'
       fullPath: '/register-volunteer'
       preLoaderRoute: typeof RegisterVolunteerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -368,6 +388,7 @@ const rootRouteChildren: RootRouteChildren = {
   LearningPathsRoute: LearningPathsRoute,
   LessonsRoute: LessonsRoute,
   LoginRoute: LoginRoute,
+  RegisterRoute: RegisterRoute,
   RegisterVolunteerRoute: RegisterVolunteerRoute,
   VolunteerDashboardRoute: VolunteerDashboardRoute,
   VolunteerLoginRoute: VolunteerLoginRoute,
@@ -376,3 +397,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
