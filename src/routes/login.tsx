@@ -10,7 +10,7 @@ export const Route = createFileRoute("/login")({
 
 const ACCOUNTS: Record<string, { password: string; role: "admin" | "learner" | "volunteer"; redirect: string }> = {
   "admin@genbridge.org.in": { password: "123", role: "admin", redirect: "/admin-dashboard" },
-  "priya@gmail.com":        { password: "567", role: "learner", redirect: "/learner-dashboard" },
+  "priya@gmail.com":        { password: "567", role: "volunteer", redirect: "/volunteer-dashboard" },
   "asha@gmail.com":         { password: "890", role: "learner", redirect: "/learner-dashboard" },
 };
 
@@ -36,6 +36,7 @@ function Login() {
     if (typeof window !== "undefined") {
       localStorage.setItem("genbridge_role", role);
       localStorage.setItem("genbridge_learner", "1");
+      localStorage.setItem("genbridge_name", role === "admin" ? "Admin" : role === "volunteer" ? "Priya" : "Asha");
       window.dispatchEvent(new Event("genbridge-auth"));
     }
     navigate({ to: redirect });
