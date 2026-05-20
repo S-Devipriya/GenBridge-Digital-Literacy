@@ -93,7 +93,7 @@ function FeedbackPage() {
       </section>
 
       <div className="hub-pagination-row">
-        <Link to="/" className="hub-btn">
+        <Link to="/home" className="hub-btn">
           Return to Home Page
         </Link>
       </div>
