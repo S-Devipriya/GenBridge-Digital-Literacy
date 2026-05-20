@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as VolunteerLoginRouteImport } from './routes/volunteer-login'
 import { Route as VolunteerDashboardRouteImport } from './routes/volunteer-dashboard'
 import { Route as RegisterVolunteerRouteImport } from './routes/register-volunteer'
+import { Route as RegisterLearnerRouteImport } from './routes/register-learner'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as LessonsRouteImport } from './routes/lessons'
@@ -24,6 +25,7 @@ import { Route as FeedbackRouteImport } from './routes/feedback'
 import { Route as CommunityMeetingsRouteImport } from './routes/community-meetings'
 import { Route as BookmarksRouteImport } from './routes/bookmarks'
 import { Route as BadgesRouteImport } from './routes/badges'
+import { Route as AdminDashboardRouteImport } from './routes/admin-dashboard'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MeetingSignupIdRouteImport } from './routes/meeting-signup.$id'
 
@@ -40,6 +42,11 @@ const VolunteerDashboardRoute = VolunteerDashboardRouteImport.update({
 const RegisterVolunteerRoute = RegisterVolunteerRouteImport.update({
   id: '/register-volunteer',
   path: '/register-volunteer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterLearnerRoute = RegisterLearnerRouteImport.update({
+  id: '/register-learner',
+  path: '/register-learner',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RegisterRoute = RegisterRouteImport.update({
@@ -102,6 +109,11 @@ const BadgesRoute = BadgesRouteImport.update({
   path: '/badges',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/admin-dashboard',
+  path: '/admin-dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -115,6 +127,7 @@ const MeetingSignupIdRoute = MeetingSignupIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin-dashboard': typeof AdminDashboardRoute
   '/badges': typeof BadgesRoute
   '/bookmarks': typeof BookmarksRoute
   '/community-meetings': typeof CommunityMeetingsRoute
@@ -127,6 +140,7 @@ export interface FileRoutesByFullPath {
   '/lessons': typeof LessonsRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
+  '/register-learner': typeof RegisterLearnerRoute
   '/register-volunteer': typeof RegisterVolunteerRoute
   '/volunteer-dashboard': typeof VolunteerDashboardRoute
   '/volunteer-login': typeof VolunteerLoginRoute
@@ -134,6 +148,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin-dashboard': typeof AdminDashboardRoute
   '/badges': typeof BadgesRoute
   '/bookmarks': typeof BookmarksRoute
   '/community-meetings': typeof CommunityMeetingsRoute
@@ -146,6 +161,7 @@ export interface FileRoutesByTo {
   '/lessons': typeof LessonsRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
+  '/register-learner': typeof RegisterLearnerRoute
   '/register-volunteer': typeof RegisterVolunteerRoute
   '/volunteer-dashboard': typeof VolunteerDashboardRoute
   '/volunteer-login': typeof VolunteerLoginRoute
@@ -154,6 +170,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin-dashboard': typeof AdminDashboardRoute
   '/badges': typeof BadgesRoute
   '/bookmarks': typeof BookmarksRoute
   '/community-meetings': typeof CommunityMeetingsRoute
@@ -166,6 +183,7 @@ export interface FileRoutesById {
   '/lessons': typeof LessonsRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
+  '/register-learner': typeof RegisterLearnerRoute
   '/register-volunteer': typeof RegisterVolunteerRoute
   '/volunteer-dashboard': typeof VolunteerDashboardRoute
   '/volunteer-login': typeof VolunteerLoginRoute
@@ -175,6 +193,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin-dashboard'
     | '/badges'
     | '/bookmarks'
     | '/community-meetings'
@@ -187,6 +206,7 @@ export interface FileRouteTypes {
     | '/lessons'
     | '/login'
     | '/register'
+    | '/register-learner'
     | '/register-volunteer'
     | '/volunteer-dashboard'
     | '/volunteer-login'
@@ -194,6 +214,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin-dashboard'
     | '/badges'
     | '/bookmarks'
     | '/community-meetings'
@@ -206,6 +227,7 @@ export interface FileRouteTypes {
     | '/lessons'
     | '/login'
     | '/register'
+    | '/register-learner'
     | '/register-volunteer'
     | '/volunteer-dashboard'
     | '/volunteer-login'
@@ -213,6 +235,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/admin-dashboard'
     | '/badges'
     | '/bookmarks'
     | '/community-meetings'
@@ -225,6 +248,7 @@ export interface FileRouteTypes {
     | '/lessons'
     | '/login'
     | '/register'
+    | '/register-learner'
     | '/register-volunteer'
     | '/volunteer-dashboard'
     | '/volunteer-login'
@@ -233,6 +257,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminDashboardRoute: typeof AdminDashboardRoute
   BadgesRoute: typeof BadgesRoute
   BookmarksRoute: typeof BookmarksRoute
   CommunityMeetingsRoute: typeof CommunityMeetingsRoute
@@ -245,6 +270,7 @@ export interface RootRouteChildren {
   LessonsRoute: typeof LessonsRoute
   LoginRoute: typeof LoginRoute
   RegisterRoute: typeof RegisterRoute
+  RegisterLearnerRoute: typeof RegisterLearnerRoute
   RegisterVolunteerRoute: typeof RegisterVolunteerRoute
   VolunteerDashboardRoute: typeof VolunteerDashboardRoute
   VolunteerLoginRoute: typeof VolunteerLoginRoute
@@ -272,6 +298,13 @@ declare module '@tanstack/react-router' {
       path: '/register-volunteer'
       fullPath: '/register-volunteer'
       preLoaderRoute: typeof RegisterVolunteerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register-learner': {
+      id: '/register-learner'
+      path: '/register-learner'
+      fullPath: '/register-learner'
+      preLoaderRoute: typeof RegisterLearnerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/register': {
@@ -358,6 +391,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BadgesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin-dashboard': {
+      id: '/admin-dashboard'
+      path: '/admin-dashboard'
+      fullPath: '/admin-dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -377,6 +417,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminDashboardRoute: AdminDashboardRoute,
   BadgesRoute: BadgesRoute,
   BookmarksRoute: BookmarksRoute,
   CommunityMeetingsRoute: CommunityMeetingsRoute,
@@ -389,6 +430,7 @@ const rootRouteChildren: RootRouteChildren = {
   LessonsRoute: LessonsRoute,
   LoginRoute: LoginRoute,
   RegisterRoute: RegisterRoute,
+  RegisterLearnerRoute: RegisterLearnerRoute,
   RegisterVolunteerRoute: RegisterVolunteerRoute,
   VolunteerDashboardRoute: VolunteerDashboardRoute,
   VolunteerLoginRoute: VolunteerLoginRoute,
