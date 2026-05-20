@@ -28,6 +28,7 @@ import { Route as BadgesRouteImport } from './routes/badges'
 import { Route as AdminDashboardRouteImport } from './routes/admin-dashboard'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MeetingSignupIdRouteImport } from './routes/meeting-signup.$id'
+import { Route as CourseIdRouteImport } from './routes/course.$id'
 
 const VolunteerLoginRoute = VolunteerLoginRouteImport.update({
   id: '/volunteer-login',
@@ -124,6 +125,11 @@ const MeetingSignupIdRoute = MeetingSignupIdRouteImport.update({
   path: '/meeting-signup/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CourseIdRoute = CourseIdRouteImport.update({
+  id: '/course/$id',
+  path: '/course/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -144,6 +150,7 @@ export interface FileRoutesByFullPath {
   '/register-volunteer': typeof RegisterVolunteerRoute
   '/volunteer-dashboard': typeof VolunteerDashboardRoute
   '/volunteer-login': typeof VolunteerLoginRoute
+  '/course/$id': typeof CourseIdRoute
   '/meeting-signup/$id': typeof MeetingSignupIdRoute
 }
 export interface FileRoutesByTo {
@@ -165,6 +172,7 @@ export interface FileRoutesByTo {
   '/register-volunteer': typeof RegisterVolunteerRoute
   '/volunteer-dashboard': typeof VolunteerDashboardRoute
   '/volunteer-login': typeof VolunteerLoginRoute
+  '/course/$id': typeof CourseIdRoute
   '/meeting-signup/$id': typeof MeetingSignupIdRoute
 }
 export interface FileRoutesById {
@@ -187,6 +195,7 @@ export interface FileRoutesById {
   '/register-volunteer': typeof RegisterVolunteerRoute
   '/volunteer-dashboard': typeof VolunteerDashboardRoute
   '/volunteer-login': typeof VolunteerLoginRoute
+  '/course/$id': typeof CourseIdRoute
   '/meeting-signup/$id': typeof MeetingSignupIdRoute
 }
 export interface FileRouteTypes {
@@ -210,6 +219,7 @@ export interface FileRouteTypes {
     | '/register-volunteer'
     | '/volunteer-dashboard'
     | '/volunteer-login'
+    | '/course/$id'
     | '/meeting-signup/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -231,6 +241,7 @@ export interface FileRouteTypes {
     | '/register-volunteer'
     | '/volunteer-dashboard'
     | '/volunteer-login'
+    | '/course/$id'
     | '/meeting-signup/$id'
   id:
     | '__root__'
@@ -252,6 +263,7 @@ export interface FileRouteTypes {
     | '/register-volunteer'
     | '/volunteer-dashboard'
     | '/volunteer-login'
+    | '/course/$id'
     | '/meeting-signup/$id'
   fileRoutesById: FileRoutesById
 }
@@ -274,6 +286,7 @@ export interface RootRouteChildren {
   RegisterVolunteerRoute: typeof RegisterVolunteerRoute
   VolunteerDashboardRoute: typeof VolunteerDashboardRoute
   VolunteerLoginRoute: typeof VolunteerLoginRoute
+  CourseIdRoute: typeof CourseIdRoute
   MeetingSignupIdRoute: typeof MeetingSignupIdRoute
 }
 
@@ -412,6 +425,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MeetingSignupIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/course/$id': {
+      id: '/course/$id'
+      path: '/course/$id'
+      fullPath: '/course/$id'
+      preLoaderRoute: typeof CourseIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -434,6 +454,7 @@ const rootRouteChildren: RootRouteChildren = {
   RegisterVolunteerRoute: RegisterVolunteerRoute,
   VolunteerDashboardRoute: VolunteerDashboardRoute,
   VolunteerLoginRoute: VolunteerLoginRoute,
+  CourseIdRoute: CourseIdRoute,
   MeetingSignupIdRoute: MeetingSignupIdRoute,
 }
 export const routeTree = rootRouteImport
