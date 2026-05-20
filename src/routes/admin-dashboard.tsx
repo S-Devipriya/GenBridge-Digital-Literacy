@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 
 export const Route = createFileRoute("/admin-dashboard")({
   head: () => ({ meta: [{ title: "Admin Dashboard — GenBridge" }] }),
@@ -40,7 +40,7 @@ function AdminDashboard() {
   function removeUser(id: number) {
     setUsers((u) => u.filter((x) => x.id !== id));
   }
-  function addUser(e: React.FormEvent<HTMLFormElement>) {
+  function addUser(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!newUser.name || !newUser.email) return;
     setUsers((u) => [...u, { id: Date.now(), ...newUser }]);
