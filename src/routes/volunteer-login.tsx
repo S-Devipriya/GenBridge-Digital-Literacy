@@ -13,6 +13,7 @@ function VolunteerLogin() {
     if (typeof window !== "undefined") {
       localStorage.setItem("genbridge_role", "volunteer");
       localStorage.setItem("genbridge_learner", "1");
+      localStorage.setItem("genbridge_name", "Priya");
       window.dispatchEvent(new Event("genbridge-auth"));
     }
     navigate({ to: "/volunteer-dashboard" });
