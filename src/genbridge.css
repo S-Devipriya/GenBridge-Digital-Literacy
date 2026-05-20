@@ -1281,3 +1281,15 @@ a {
 
 /* Welcome-section padding tighter */
 .welcome-tight { padding: 1.5rem 2rem !important; min-height: auto !important; }
+
+.home-course-search {
+    margin-top: 0.5rem;
+}
+
+.home-course-search .search-title-text {
+    font-size: 1.375rem;
+}
+
+.lessons-grid-with-welcome > article:first-child {
+    grid-column: auto;
+}
