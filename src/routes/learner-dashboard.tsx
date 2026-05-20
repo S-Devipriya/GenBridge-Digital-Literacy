@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 
 export const Route = createFileRoute("/learner-dashboard")({
   head: () => ({ meta: [{ title: "My Dashboard — GenBridge" }] }),
@@ -13,13 +14,24 @@ const BADGES = [
 ];
 
 function LearnerDashboard() {
+  const [role, setRole] = useState("learner");
+  const [name, setName] = useState("Asha");
+
+  useEffect(() => {
+    setRole(localStorage.getItem("genbridge_role") || "learner");
+    setName(localStorage.getItem("genbridge_name") || "Asha");
+  }, []);
+
+  const initial = name.slice(0, 1).toUpperCase();
+  const greeting = role === "admin" ? "Welcome, Admin!" : `Welcome back, ${name}!`;
+
   return (
     <>
       <section className="unified-panel learner-profile-row">
         <div className="learner-profile-left">
-          <div className="dashboard-avatar">A</div>
+          <div className="dashboard-avatar">{initial}</div>
           <div>
-            <h1 className="dashboard-greeting-name">Welcome back, Asha!</h1>
+            <h1 className="dashboard-greeting-name">{greeting}</h1>
             <p className="dashboard-greeting-sub">Ready to learn something new today?</p>
           </div>
         </div>
@@ -45,7 +57,9 @@ function LearnerDashboard() {
         </Link>
       </div>
 
-      <h2 className="section-heading" style={{ marginTop: "1.5rem" }}>Your Achievement Badges</h2>
+      <h2 className="section-heading" style={{ marginTop: "1.5rem" }}>
+        Your Achievement Badges
+      </h2>
       <section className="unified-panel achievement-panel">
         {BADGES.slice(0, 4).map((b) => (
           <Link key={b.label} to="/badges" className="achievement-tile">
@@ -53,7 +67,9 @@ function LearnerDashboard() {
             <span className="achievement-label">{b.label}</span>
           </Link>
         ))}
-        <Link to="/badges" className="see-all-tile">See all →</Link>
+        <Link to="/badges" className="see-all-tile">
+          See all →
+        </Link>
       </section>
 
       <div className="learner-big-buttons">
@@ -72,7 +88,9 @@ function LearnerDashboard() {
       </div>
 
       <div className="hub-pagination-row">
-        <Link to="/home" className="hub-btn">Return to Home Page</Link>
+        <Link to="/home" className="hub-btn">
+          Return to Home Page
+        </Link>
       </div>
     </>
   );

@@ -16,25 +16,81 @@ const FILTERS: { label: LessonType; cls: string }[] = [
 ];
 
 type Lesson = {
-  title: string; type: Exclude<LessonType, "All">; desc: string;
-  cta: string; icon: string; tag: string; tagClass: string;
-  cardClass: string; mediaIcon: string; link?: string;
+  title: string;
+  type: Exclude<LessonType, "All">;
+  desc: string;
+  cta: string;
+  icon: string;
+  tag: string;
+  tagClass: string;
+  cardClass: string;
+  mediaIcon: string;
+  link?: string;
 };
 const LESSONS: Lesson[] = [
-  { title: "What is Logging in?", type: "Articles", desc: "Learn how usernames and passwords keep you safe online.", cta: "Read Guide", icon: "📄", tag: "Read", tagClass: "read-tag", cardClass: "card-articles", mediaIcon: "📄" },
-  { title: "Join a Google Meet", type: "Videos", desc: "Step-by-step video on joining a meeting from your device.", cta: "Watch Video", icon: "▶", tag: "Watch", tagClass: "watch-tag", cardClass: "card-videos", mediaIcon: "▶" },
-  { title: "Practice Sending a Payment", type: "Tryouts", desc: "Try a safe fake wallet — no real money used.", cta: "Start Activity", icon: "🚀", tag: "Try", tagClass: "try-tag", cardClass: "card-tryouts", mediaIcon: "🚀", link: "/tryout/send-payment" },
-  { title: "Spotting Online Scams", type: "Articles", desc: "Common scams and how to avoid them.", cta: "Read Guide", icon: "📄", tag: "Read", tagClass: "read-tag", cardClass: "card-articles", mediaIcon: "📄" },
-  { title: "Sending a WhatsApp Voice Note", type: "Videos", desc: "Record and send your first voice message.", cta: "Watch Video", icon: "▶", tag: "Watch", tagClass: "watch-tag", cardClass: "card-videos", mediaIcon: "▶" },
+  {
+    title: "What is Logging in?",
+    type: "Articles",
+    desc: "Learn how usernames and passwords keep you safe online.",
+    cta: "Read Guide",
+    icon: "📄",
+    tag: "Read",
+    tagClass: "read-tag",
+    cardClass: "card-articles",
+    mediaIcon: "📄",
+  },
+  {
+    title: "Join a Google Meet",
+    type: "Videos",
+    desc: "Step-by-step video on joining a meeting from your device.",
+    cta: "Watch Video",
+    icon: "▶",
+    tag: "Watch",
+    tagClass: "watch-tag",
+    cardClass: "card-videos",
+    mediaIcon: "▶",
+  },
+  {
+    title: "Practice Sending a Payment",
+    type: "Tryouts",
+    desc: "Try a safe fake wallet — no real money used.",
+    cta: "Start Activity",
+    icon: "🚀",
+    tag: "Try",
+    tagClass: "try-tag",
+    cardClass: "card-tryouts",
+    mediaIcon: "🚀",
+    link: "/tryout/send-payment",
+  },
+  {
+    title: "Spotting Online Scams",
+    type: "Articles",
+    desc: "Common scams and how to avoid them.",
+    cta: "Read Guide",
+    icon: "📄",
+    tag: "Read",
+    tagClass: "read-tag",
+    cardClass: "card-articles",
+    mediaIcon: "📄",
+  },
+  {
+    title: "Sending a WhatsApp Voice Note",
+    type: "Videos",
+    desc: "Record and send your first voice message.",
+    cta: "Watch Video",
+    icon: "▶",
+    tag: "Watch",
+    tagClass: "watch-tag",
+    cardClass: "card-videos",
+    mediaIcon: "▶",
+  },
 ];
 
 function Lessons() {
   const [filter, setFilter] = useState<LessonType>("All");
   const [query, setQuery] = useState("");
 
-  const visible = filter === "All"
-    ? LESSONS
-    : LESSONS.filter((l) => l.type === filter);
+  const visible = filter === "All" ? LESSONS : LESSONS.filter((l) => l.type === filter);
 
   function handleVoice() {
     alert("Voice search coming soon — please tell us what you want to learn.");
@@ -56,10 +112,17 @@ function Lessons() {
             placeholder="Try 'banking', 'whatsapp', or 'video call'..."
             className="search-text-input"
           />
-          <button type="button" className="voice-search-btn voice-as-search" onClick={handleVoice} aria-label="Voice search">
+          <button
+            type="button"
+            className="voice-search-btn voice-as-search"
+            onClick={handleVoice}
+            aria-label="Voice search"
+          >
             🎤 Voice
           </button>
-          <button type="submit" className="search-action-btn">Search</button>
+          <button type="submit" className="search-action-btn">
+            Search
+          </button>
         </form>
         <div className="lesson-filter-bar">
           {FILTERS.map((f) => (
@@ -81,8 +144,8 @@ function Lessons() {
       <div className="hub-content-shelf">
         <h3 className="hub-main-title">Start with our recommended lessons</h3>
 
-        <div className="three-column-lessons-grid margin-bottom-modifier">
-          <article className="unified-panel learning-card">
+        <div className="three-column-lessons-grid lessons-grid-with-welcome">
+          <article className="unified-panel learning-card card-videos">
             <div className="card-media-frame">
               <span className="media-indicator-icon">▶</span>
             </div>
@@ -97,20 +160,21 @@ function Lessons() {
               <button className="card-primary-btn">Watch Video</button>
             </div>
           </article>
-        </div>
-
-        <div className="three-column-lessons-grid">
           {visible.map((l) => (
             <article key={l.title} className={`unified-panel lesson-card-simple ${l.cardClass}`}>
               <div className="card-media-frame">
                 <span className="media-indicator-icon">{l.mediaIcon}</span>
               </div>
-              <span className={`badge-tag ${l.tagClass}`}>{l.icon} {l.tag}</span>
+              <span className={`badge-tag ${l.tagClass}`}>
+                {l.icon} {l.tag}
+              </span>
               <h4 className="card-main-heading">{l.title}</h4>
               <p className="card-body-prose">{l.desc}</p>
               <div className="card-button-anchor">
                 {l.link ? (
-                  <Link to={l.link} className="card-primary-btn">{l.cta}</Link>
+                  <Link to={l.link} className="card-primary-btn">
+                    {l.cta}
+                  </Link>
                 ) : (
                   <button className="card-primary-btn">{l.cta}</button>
                 )}
@@ -120,7 +184,9 @@ function Lessons() {
         </div>
 
         <div className="hub-pagination-row">
-          <Link to="/home" className="hub-btn">Return to Home Page</Link>
+          <Link to="/home" className="hub-btn">
+            Return to Home Page
+          </Link>
         </div>
       </div>
     </>

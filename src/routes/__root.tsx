@@ -119,9 +119,15 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const navigate = useNavigate();
   const [role, setRole] = useState<string | null>(null);
+  const [largeText, setLargeText] = useState(false);
+  const [language, setLanguage] = useState("en");
 
   useEffect(() => {
-    const read = () => setRole(localStorage.getItem("genbridge_role"));
+    const read = () => {
+      setRole(localStorage.getItem("genbridge_role"));
+      setLargeText(localStorage.getItem("genbridge_large_text") === "1");
+      setLanguage(localStorage.getItem("genbridge_language") || "en");
+    };
     read();
     window.addEventListener("genbridge-auth", read);
     window.addEventListener("storage", read);
@@ -131,31 +137,98 @@ function RootComponent() {
     };
   }, []);
 
+  useEffect(() => {
+    document.documentElement.classList.toggle("genbridge-text-large", largeText);
+  }, [largeText]);
+
+  function toggleTextSize() {
+    const next = !largeText;
+    setLargeText(next);
+    localStorage.setItem("genbridge_large_text", next ? "1" : "0");
+  }
+
+  function updateLanguage(next: string) {
+    setLanguage(next);
+    localStorage.setItem("genbridge_language", next);
+  }
+
   function logout() {
     localStorage.removeItem("genbridge_role");
     localStorage.removeItem("genbridge_learner");
+    localStorage.removeItem("genbridge_name");
     window.dispatchEvent(new Event("genbridge-auth"));
     navigate({ to: "/" });
   }
 
   const dashboardLink =
-    role === "admin" ? "/admin-dashboard"
-    : role === "volunteer" ? "/volunteer-dashboard"
-    : "/learner-dashboard";
+    role === "admin"
+      ? "/admin-dashboard"
+      : role === "volunteer"
+        ? "/volunteer-dashboard"
+        : "/learner-dashboard";
 
   return (
     <QueryClientProvider client={queryClient}>
       <header className="header-bar">
-        <Link to="/" className="brand-logo">☀ GenBridge</Link>
+        <Link to="/" className="brand-logo">
+          ☀ GenBridge
+        </Link>
         <nav className="nav-links">
+          <div className="accessibility-text-controls" aria-label="Text size controls">
+            <button
+              type="button"
+              className={`text-size-btn ${!largeText ? "active-size" : ""}`}
+              onClick={toggleTextSize}
+            >
+              A
+            </button>
+            <button
+              type="button"
+              className={`text-size-btn ${largeText ? "active-size" : ""}`}
+              onClick={toggleTextSize}
+            >
+              A+
+            </button>
+          </div>
+          <label className="language-select-wrapper" aria-label="Select language">
+            🌐
+            <select
+              className="language-dropdown-selector"
+              value={language}
+              onChange={(e) => updateLanguage(e.target.value)}
+            >
+              <option value="en">English</option>
+              <option value="hi">हिन्दी</option>
+              <option value="ta">தமிழ்</option>
+              <option value="te">తెలుగు</option>
+            </select>
+          </label>
           {role ? (
             <>
-              <Link to={dashboardLink} className="nav-btn-icon" aria-label="My Account" title="My Account">👤</Link>
-              <Link to={dashboardLink} className="nav-btn-icon" aria-label="Settings" title="Settings">⚙️</Link>
-              <button type="button" className="nav-btn" onClick={logout}>Log Out</button>
+              <Link
+                to={dashboardLink}
+                className="nav-btn-icon"
+                aria-label="My Account"
+                title="My Account"
+              >
+                👤
+              </Link>
+              <Link
+                to={dashboardLink}
+                className="nav-btn-icon"
+                aria-label="Settings"
+                title="Settings"
+              >
+                ⚙️
+              </Link>
+              <button type="button" className="nav-btn" onClick={logout}>
+                Log Out
+              </button>
             </>
           ) : (
-            <Link to="/login" className="nav-btn">Log In</Link>
+            <Link to="/login" className="nav-btn">
+              Log In
+            </Link>
           )}
         </nav>
       </header>
@@ -165,10 +238,11 @@ function RootComponent() {
       <footer className="footer-bar">
         <p>GenBridge Eco-Learning System. Designed explicitly for digital accessibility.</p>
         <p>
-          Any Queries or Suggestions?{" "}
-          <Link to="/feedback">Share your feedback</Link>
+          Any Queries or Suggestions? <Link to="/feedback">Share your feedback</Link>
         </p>
-        <p>Write to us at <a href="mailto:info@genbridge.org.in">info@genbridge.org.in</a></p>
+        <p>
+          Write to us at <a href="mailto:info@genbridge.org.in">info@genbridge.org.in</a>
+        </p>
       </footer>
     </QueryClientProvider>
   );
