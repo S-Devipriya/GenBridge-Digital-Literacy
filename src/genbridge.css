@@ -521,9 +521,10 @@ a {
     border: none;
     color: #94a3b8;
     font-weight: 700;
+    font-size: 1.125rem;
     cursor: pointer;
-    min-height: auto !important;
-    padding: 0.25rem 0.75rem;
+    min-height: 48px !important;
+    padding: 0.25rem 0.9rem;
     transition: color 0.15s ease;
 }
 
@@ -544,6 +545,7 @@ a {
     padding: 0 0.75rem;
     color: #ffffff;
     font-size: 1.125rem;
+    min-height: 48px;
 }
 
 .language-dropdown-selector {
@@ -555,6 +557,7 @@ a {
     padding: 0.5rem;
     cursor: pointer;
     outline: none;
+    min-height: 48px;
 }
 
 .language-dropdown-selector option {
