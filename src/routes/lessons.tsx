@@ -81,8 +81,8 @@ function Lessons() {
       <div className="hub-content-shelf">
         <h3 className="hub-main-title">Start with our recommended lessons</h3>
 
-        <div className="three-column-lessons-grid margin-bottom-modifier">
-          <article className="unified-panel learning-card">
+        <div className="three-column-lessons-grid lessons-grid-with-welcome">
+          <article className="unified-panel learning-card card-videos">
             <div className="card-media-frame">
               <span className="media-indicator-icon">▶</span>
             </div>
@@ -97,9 +97,6 @@ function Lessons() {
               <button className="card-primary-btn">Watch Video</button>
             </div>
           </article>
-        </div>
-
-        <div className="three-column-lessons-grid">
           {visible.map((l) => (
             <article key={l.title} className={`unified-panel lesson-card-simple ${l.cardClass}`}>
               <div className="card-media-frame">
