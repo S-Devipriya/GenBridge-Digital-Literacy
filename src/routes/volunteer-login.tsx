@@ -10,6 +10,11 @@ function VolunteerLogin() {
   const navigate = useNavigate();
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (typeof window !== "undefined") {
+      localStorage.setItem("genbridge_role", "volunteer");
+      localStorage.setItem("genbridge_learner", "1");
+      window.dispatchEvent(new Event("genbridge-auth"));
+    }
     navigate({ to: "/volunteer-dashboard" });
   }
   return (
