@@ -651,20 +651,20 @@ a {
 
 /* Pastel Theme Colorways (High text contrast preservation) */
 .theme-pastel-blue {
-  background-color: #dbeafe !important;
-  color: #0f172a !important;
+  background-color: #2563eb !important;
+  color: #ffffff !important;
 }
 .theme-pastel-green {
-  background-color: #d1fae5 !important;
-  color: #0f172a !important;
+  background-color: #16a34a !important;
+  color: #ffffff !important;
 }
 .theme-pastel-purple {
-  background-color: #f3e8ff !important;
-  color: #0f172a !important;
+  background-color: #7c3aed !important;
+  color: #ffffff !important;
 }
 .theme-pastel-orange {
-  background-color: #ffedd5 !important;
-  color: #0f172a !important;
+  background-color: #ea580c !important;
+  color: #ffffff !important;
 }
 .theme-pastel-pink {
   background-color: #fce7f3 !important;
@@ -675,14 +675,22 @@ a {
   color: #0f172a !important;
 }
 
-.theme-pastel-blue:hover,
-.theme-pastel-green:hover,
-.theme-pastel-purple:hover,
-.theme-pastel-orange:hover,
+.theme-pastel-blue:hover   { background-color: #1d4ed8 !important; }
+.theme-pastel-green:hover  { background-color: #15803d !important; }
+.theme-pastel-purple:hover { background-color: #6d28d9 !important; }
+.theme-pastel-orange:hover { background-color: #c2410c !important; }
 .theme-pastel-pink:hover,
-.theme-pastel-yellow:hover {
-  filter: brightness(0.96);
-}
+.theme-pastel-yellow:hover { filter: brightness(0.96); }
+
+/* Learner dashboard uses pastel variants — keep those soft */
+.learner-big-btn.theme-pastel-blue   { background-color: #dbeafe !important; color: #0f172a !important; }
+.learner-big-btn.theme-pastel-green  { background-color: #d1fae5 !important; color: #0f172a !important; }
+.learner-big-btn.theme-pastel-purple { background-color: #f3e8ff !important; color: #0f172a !important; }
+.learner-big-btn.theme-pastel-orange { background-color: #ffedd5 !important; color: #0f172a !important; }
+.learner-big-btn.theme-pastel-blue:hover,
+.learner-big-btn.theme-pastel-green:hover,
+.learner-big-btn.theme-pastel-purple:hover,
+.learner-big-btn.theme-pastel-orange:hover { filter: brightness(0.96); }
 /* ==========================================================================
    LESSONS FILTER BAR & VOICE SEARCH
    ========================================================================== */
@@ -1751,4 +1759,39 @@ a {
 
 .lessons-grid-with-welcome > article:first-child {
   grid-column: auto;
+}
+
+/* Center "Get Started" CTA vertically within welcome panel on / */
+.welcome-with-cta .welcome-landing-content {
+  gap: 2rem;
+}
+.welcome-cta-btn {
+  width: 100%;
+  max-width: 20rem;
+  padding: 0.875rem 1.5rem;
+}
+
+/* Home: tighter welcome + spacing after search */
+.welcome-tighter {
+  padding: 1rem 2rem !important;
+  min-height: auto !important;
+}
+.home-course-search {
+  margin-bottom: 1.25rem;
+}
+.home-grid-spaced {
+  margin-top: 0.5rem;
+}
+
+/* Search button: ensure label/icon is centered */
+.search-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-width: 64px;
+}
+.search-icon-only {
+  font-size: 1.5rem;
+  line-height: 1;
 }
