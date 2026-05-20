@@ -155,6 +155,7 @@ function RootComponent() {
   function logout() {
     localStorage.removeItem("genbridge_role");
     localStorage.removeItem("genbridge_learner");
+    localStorage.removeItem("genbridge_name");
     window.dispatchEvent(new Event("genbridge-auth"));
     navigate({ to: "/" });
   }
