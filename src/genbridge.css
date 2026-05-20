@@ -1086,9 +1086,14 @@ a {
 .filter-chip.chip-paths { margin-left: auto; }
 
 /* Pastel lesson cards */
-.lesson-card-simple.card-articles { background-color: #faf5ff; }
-.lesson-card-simple.card-videos   { background-color: #eff6ff; }
-.lesson-card-simple.card-tryouts  { background-color: #fff7ed; }
+.learning-card.card-videos,
+.lesson-card-simple.card-videos   { background-color: #e0f2fe !important; }
+.lesson-card-simple.card-articles { background-color: #faf5ff !important; }
+.lesson-card-simple.card-tryouts  { background-color: #fff7ed !important; }
+.learning-card.card-videos .card-media-frame,
+.lesson-card-simple.card-videos .card-media-frame { background-color: #bae6fd; }
+.lesson-card-simple.card-articles .card-media-frame { background-color: #eadcff; }
+.lesson-card-simple.card-tryouts .card-media-frame { background-color: #fed7aa; }
 
 /* Achievement panel — bigger icons */
 .achievement-panel {
