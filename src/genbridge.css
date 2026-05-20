@@ -1763,12 +1763,13 @@ a {
 
 /* Center "Get Started" CTA vertically within welcome panel on / */
 .welcome-with-cta .welcome-landing-content {
-  gap: 2rem;
+  gap: 3rem;
 }
 .welcome-cta-btn {
   width: 100%;
   max-width: 20rem;
   padding: 0.875rem 1.5rem;
+  margin-top: 1.5rem;
 }
 
 /* Home: tighter welcome + spacing after search */
@@ -1794,4 +1795,16 @@ a {
 .search-icon-only {
   font-size: 1.5rem;
   line-height: 1;
+}
+
+/* Learning Paths CTA on /lessons — square-ish like nav login button */
+.filter-chip.chip-paths {
+  padding: 0.75rem 1.5rem !important;
+  font-size: 1.125rem !important;
+  font-weight: 700 !important;
+  border-radius: 0.75rem !important;
+  min-height: 56px !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
 }
