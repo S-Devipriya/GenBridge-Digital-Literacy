@@ -1039,3 +1039,227 @@ a {
 .theme-pastel-green  { background-color: #d1fae5; }
 .theme-pastel-purple { background-color: #f3e8ff; }
 .theme-pastel-orange { background-color: #ffedd5; }
+
+/* ==========================================================================
+   ADDITIONS — unified login, achievements panel, admin, course, tryout lab
+   ========================================================================== */
+
+/* Nav buttons matching login (yellow) */
+.nav-btn-icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 48px; height: 48px;
+    background-color: #f4dc40;
+    color: #0f172a;
+    border: none;
+    border-radius: 999px;
+    font-size: 1.25rem;
+    cursor: pointer;
+    text-decoration: none;
+    min-height: 48px;
+    transition: background-color 0.15s ease;
+}
+.nav-btn-icon:hover { background-color: #ebd128; }
+
+/* Voice search same as primary search */
+.voice-search-btn.voice-as-search {
+    background-color: #0f172a;
+    color: #ffffff;
+}
+.voice-search-btn.voice-as-search:hover { background-color: #1e293b; }
+
+/* Lesson filter bar: nicer spacing + push paths to right */
+.lesson-filter-bar { gap: 0.75rem; padding: 1rem 0.25rem 0 0.25rem; }
+.lesson-filter-bar .filter-chip { margin-right: 0.25rem; }
+.filter-chip.chip-paths { margin-left: auto; }
+
+/* Pastel lesson cards */
+.lesson-card-simple.card-articles { background-color: #faf5ff; }
+.lesson-card-simple.card-videos   { background-color: #eff6ff; }
+.lesson-card-simple.card-tryouts  { background-color: #fff7ed; }
+
+/* Achievement panel — bigger icons */
+.achievement-panel {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1.5rem;
+}
+@media (min-width: 640px) {
+    .achievement-panel { grid-template-columns: repeat(5, 1fr); }
+}
+.achievement-tile {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 0.5rem;
+    padding: 1.25rem 0.5rem;
+    background-color: #fef9c3;
+    border-radius: 1rem;
+    color: #0f172a;
+    text-decoration: none;
+}
+.achievement-icon { font-size: 3rem; }
+.achievement-label { font-size: 1rem; font-weight: 700; text-align: center; }
+.see-all-tile {
+    background-color: #0f172a;
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 1.125rem;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 1rem;
+    text-decoration: none;
+    padding: 1.25rem;
+}
+.see-all-tile:hover { background-color: #1e293b; }
+
+/* Course progress reordered: progress-then-start same row */
+.course-cta-block.cta-inline {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    min-width: 20rem;
+}
+.course-cta-block.cta-inline .course-progress-track { flex: 1; }
+
+/* Course detail / Tryout split panes */
+.split-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+@media (min-width: 900px) {
+    .split-layout { grid-template-columns: 30% 1fr; }
+}
+.split-pane {
+    padding: 1.25rem;
+    display: flex; flex-direction: column; gap: 0.75rem;
+}
+.course-side-heading {
+    font-size: 1.5rem; font-weight: 800; color: #0f172a; margin: 0;
+}
+.course-side-meta { font-size: 1rem; color: #475569; margin: 0; }
+.lesson-pick-list { display: flex; flex-direction: column; gap: 0.5rem; }
+.lesson-pick-item {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background-color: #f8fafc;
+    border: 2px solid transparent;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+}
+.lesson-pick-item.active { border-color: #0f172a; background-color: #fff; }
+.lesson-pick-title { font-weight: 700; flex: 1; font-size: 1rem; color: #0f172a; }
+.lesson-pick-action {
+    background-color: #0f172a; color: #fff;
+    font-weight: 700; font-size: 0.9rem;
+    padding: 0.4rem 0.85rem; border-radius: 0.5rem; border: none;
+    min-height: auto;
+}
+
+/* Article view with download */
+.article-view { position: relative; padding: 2rem; }
+.article-download-btn {
+    position: absolute; top: 1rem; right: 1rem;
+    background-color: #f4dc40; color: #0f172a;
+    font-weight: 700; padding: 0.5rem 1rem;
+    border: none; border-radius: 0.5rem; cursor: pointer;
+    min-height: auto;
+}
+.article-download-btn:hover { background-color: #ebd128; }
+.article-view h1 { font-size: 1.875rem; margin: 0 0 1rem 0; color: #0f172a; padding-right: 8rem; }
+.article-view p  { font-size: 1.125rem; line-height: 1.7; color: #334155; }
+
+/* Tryout virtual lab */
+.tryout-instruction-step {
+    background-color: #fef9c3;
+    border-radius: 0.75rem;
+    padding: 1rem 1.25rem;
+    font-size: 1.125rem;
+    color: #0f172a;
+}
+.tryout-step-num { font-weight: 800; color: #92400e; margin-right: 0.5rem; }
+.tryout-nav-row { display: flex; justify-content: space-between; gap: 0.5rem; margin-top: 0.5rem; }
+.tryout-nav-btn {
+    background-color: #0f172a; color: #fff;
+    font-weight: 700; padding: 0.75rem 1.25rem;
+    border: none; border-radius: 0.5rem; cursor: pointer;
+}
+.tryout-nav-btn[disabled] { background-color: #94a3b8; cursor: not-allowed; }
+
+.virtual-lab {
+    background-color: #e2e8f0;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    min-height: 420px;
+    display: flex; flex-direction: column; align-items: center; gap: 1rem;
+}
+.phone-frame {
+    width: 100%;
+    max-width: 280px;
+    background-color: #fff;
+    border-radius: 1.5rem;
+    border: 4px solid #0f172a;
+    padding: 1.25rem;
+    display: flex; flex-direction: column; gap: 0.75rem;
+    min-height: 480px;
+}
+.app-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem;
+}
+.app-icon {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    background-color: #f1f5f9;
+    border: 2px solid transparent;
+    border-radius: 0.75rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+    min-height: auto;
+}
+.app-icon-glyph { font-size: 1.75rem; }
+.app-icon.is-target { border-color: #f4dc40; animation: pulse 1.5s infinite; }
+@keyframes pulse {
+    0%,100% { box-shadow: 0 0 0 0 rgba(244,220,64,0.7); }
+    50% { box-shadow: 0 0 0 8px rgba(244,220,64,0); }
+}
+.lab-input {
+    width: 100%; padding: 0.75rem;
+    border: 2px solid #cbd5e1; border-radius: 0.5rem;
+    font-size: 1rem;
+}
+.lab-btn {
+    background-color: #1a73e8; color: #fff;
+    font-weight: 700; padding: 0.75rem 1rem;
+    border: none; border-radius: 0.5rem; cursor: pointer;
+}
+.lab-screen-title { font-weight: 800; text-align: center; margin: 0; }
+.lab-list-item {
+    padding: 0.75rem; background-color: #f8fafc;
+    border-radius: 0.5rem; cursor: pointer;
+    font-size: 0.95rem;
+}
+.lab-success { color: #065f46; font-weight: 800; text-align: center; font-size: 1.25rem; }
+
+/* Admin */
+.admin-section { padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+.admin-queue-item, .admin-user-item {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 1rem; padding: 1rem;
+    background-color: #f8fafc; border-radius: 0.5rem;
+}
+.admin-actions { display: flex; gap: 0.5rem; }
+.admin-btn {
+    padding: 0.5rem 1rem; border: none; border-radius: 0.5rem;
+    font-weight: 700; cursor: pointer; font-size: 0.95rem;
+    min-height: auto;
+}
+.admin-btn-approve { background-color: #16a34a; color: #fff; }
+.admin-btn-reject  { background-color: #dc2626; color: #fff; }
+.admin-btn-neutral { background-color: #0f172a; color: #fff; }
+
+/* Reduce welcome→grid gap on home */
+.home-grid-tight { margin-top: -1rem; }
+
+/* Welcome-section padding tighter */
+.welcome-tight { padding: 1.5rem 2rem !important; min-height: auto !important; }
