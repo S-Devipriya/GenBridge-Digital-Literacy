@@ -5,9 +5,9 @@ export const Route = createFileRoute("/learning-paths")({
   component: LearningPaths,
 });
 
-const COURSES = [
+const COURSES: { name: string; lessons: number; hours: number; progress: number; slug?: string }[] = [
   { name: "Digital Basics", lessons: 8, hours: 3, progress: 60 },
-  { name: "GoogleMeet Fundamentals", lessons: 5, hours: 2, progress: 20 },
+  { name: "Google Meet Fundamentals", lessons: 5, hours: 2, progress: 20, slug: "google-meet-fundamentals" },
   { name: "Smart Phone Safety", lessons: 6, hours: 2.5, progress: 0 },
   { name: "Online Banking", lessons: 7, hours: 3, progress: 40 },
 ];
@@ -32,14 +32,22 @@ function LearningPaths() {
               <p className="course-meta"><strong>{c.lessons}</strong> lessons</p>
               <p className="course-meta">Estimated time: <strong>{c.hours} hours</strong></p>
             </div>
-            <div className="course-cta-block">
-              <div className="course-progress-track">
-                <div className="course-progress-fill" style={{ width: `${c.progress}%` }} />
+            <div className="course-cta-block cta-inline">
+              <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "0.25rem" }}>
+                <div className="course-progress-track">
+                  <div className="course-progress-fill" style={{ width: `${c.progress}%` }} />
+                </div>
+                <p className="course-progress-label">{c.progress}% complete</p>
               </div>
-              <p className="course-progress-label">{c.progress}% complete</p>
-              <button type="button" className="course-start-btn">
-                {c.progress > 0 ? "Continue" : "Start"}
-              </button>
+              {c.slug ? (
+                <Link to="/course/$id" params={{ id: c.slug }} className="course-start-btn">
+                  {c.progress > 0 ? "Continue" : "Start"}
+                </Link>
+              ) : (
+                <button type="button" className="course-start-btn">
+                  {c.progress > 0 ? "Continue" : "Start"}
+                </button>
+              )}
             </div>
           </article>
         ))}

@@ -11,7 +11,7 @@ function Index() {
         <div className="welcome-landing-content">
           <h1 className="welcome-landing-heading">Welcome to GenBridge</h1>
           <p className="welcome-landing-mission">
-            Our mission is to bridge the digital gap across generations.
+            Bridging the digital gap across generations.
           </p>
         </div>
       </section>

@@ -10,7 +10,7 @@ export const Route = createFileRoute("/home")({
 function Home() {
   return (
     <>
-      <section className="unified-panel welcome-landing-container">
+      <section className="unified-panel welcome-landing-container welcome-tight">
         <div className="welcome-landing-content">
           <h1 className="welcome-landing-heading">
             Welcome to Your Digital Learning Journey!
@@ -21,7 +21,7 @@ function Home() {
         </div>
       </section>
 
-      <div className="dashboard-features-grid">
+      <div className="dashboard-features-grid home-grid-tight">
         <Link to="/lessons" className="dashboard-nav-card theme-pastel-blue">
           <span className="dashboard-card-icon">📖</span>
           <span className="dashboard-card-label">Start Learning</span>
@@ -34,7 +34,7 @@ function Home() {
           <span className="dashboard-card-label">Join Community Meetings</span>
         </Link>
         <Link
-          to="/volunteer-login"
+          to="/login"
           className="dashboard-nav-card theme-pastel-purple"
         >
           <span className="dashboard-card-icon">💖</span>

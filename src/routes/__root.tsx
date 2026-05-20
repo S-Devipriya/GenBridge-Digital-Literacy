@@ -118,10 +118,10 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const navigate = useNavigate();
-  const [isLearner, setIsLearner] = useState(false);
+  const [role, setRole] = useState<string | null>(null);
 
   useEffect(() => {
-    const read = () => setIsLearner(localStorage.getItem("genbridge_learner") === "1");
+    const read = () => setRole(localStorage.getItem("genbridge_role"));
     read();
     window.addEventListener("genbridge-auth", read);
     window.addEventListener("storage", read);
@@ -132,20 +132,26 @@ function RootComponent() {
   }, []);
 
   function logout() {
+    localStorage.removeItem("genbridge_role");
     localStorage.removeItem("genbridge_learner");
     window.dispatchEvent(new Event("genbridge-auth"));
     navigate({ to: "/" });
   }
+
+  const dashboardLink =
+    role === "admin" ? "/admin-dashboard"
+    : role === "volunteer" ? "/volunteer-dashboard"
+    : "/learner-dashboard";
 
   return (
     <QueryClientProvider client={queryClient}>
       <header className="header-bar">
         <Link to="/" className="brand-logo">☀ GenBridge</Link>
         <nav className="nav-links">
-          {isLearner ? (
+          {role ? (
             <>
-              <Link to="/learner-dashboard" className="icon-btn" aria-label="My Account" title="My Account">👤</Link>
-              <Link to="/learner-dashboard" className="icon-btn" aria-label="Settings" title="Settings">⚙️</Link>
+              <Link to={dashboardLink} className="nav-btn-icon" aria-label="My Account" title="My Account">👤</Link>
+              <Link to={dashboardLink} className="nav-btn-icon" aria-label="Settings" title="Settings">⚙️</Link>
               <button type="button" className="nav-btn" onClick={logout}>Log Out</button>
             </>
           ) : (
@@ -162,7 +168,7 @@ function RootComponent() {
           Any Queries or Suggestions?{" "}
           <Link to="/feedback">Share your feedback</Link>
         </p>
-        <Link to="/register-volunteer">Register as Volunteer</Link>
+        <p>Write to us at <a href="mailto:info@genbridge.org.in">info@genbridge.org.in</a></p>
       </footer>
     </QueryClientProvider>
   );
