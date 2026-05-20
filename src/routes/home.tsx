@@ -21,6 +21,22 @@ function Home() {
         </div>
       </section>
 
+      <section className="unified-panel search-box-container home-course-search">
+        <label htmlFor="home-course-search" className="search-title-text">
+          Search for a course
+        </label>
+        <form onSubmit={(e) => e.preventDefault()} className="search-horizontal-form">
+          <input
+            type="text"
+            id="home-course-search"
+            name="course"
+            placeholder="Search lessons, meetings, or digital skills..."
+            className="search-text-input"
+          />
+          <Link to="/lessons" className="search-action-btn">Search</Link>
+        </form>
+      </section>
+
       <div className="dashboard-features-grid home-grid-tight">
         <Link to="/lessons" className="dashboard-nav-card theme-pastel-blue">
           <span className="dashboard-card-icon">📖</span>
