@@ -119,9 +119,15 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const navigate = useNavigate();
   const [role, setRole] = useState<string | null>(null);
+  const [largeText, setLargeText] = useState(false);
+  const [language, setLanguage] = useState("en");
 
   useEffect(() => {
-    const read = () => setRole(localStorage.getItem("genbridge_role"));
+    const read = () => {
+      setRole(localStorage.getItem("genbridge_role"));
+      setLargeText(localStorage.getItem("genbridge_large_text") === "1");
+      setLanguage(localStorage.getItem("genbridge_language") || "en");
+    };
     read();
     window.addEventListener("genbridge-auth", read);
     window.addEventListener("storage", read);
@@ -130,6 +136,21 @@ function RootComponent() {
       window.removeEventListener("storage", read);
     };
   }, []);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("genbridge-text-large", largeText);
+  }, [largeText]);
+
+  function toggleTextSize() {
+    const next = !largeText;
+    setLargeText(next);
+    localStorage.setItem("genbridge_large_text", next ? "1" : "0");
+  }
+
+  function updateLanguage(next: string) {
+    setLanguage(next);
+    localStorage.setItem("genbridge_language", next);
+  }
 
   function logout() {
     localStorage.removeItem("genbridge_role");
