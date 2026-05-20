@@ -31,10 +31,13 @@ function VolunteerDashboard() {
     <>
       <section className="unified-panel dashboard-profile-row">
         <div className="dashboard-avatar" aria-hidden>PA</div>
-        <div>
+        <div style={{ flex: 1 }}>
           <h1 className="dashboard-greeting-name">Welcome back, Priya!</h1>
           <p className="dashboard-greeting-sub">Thank you for everything you do for our learners.</p>
         </div>
+        <Link to="/learner-dashboard" className="hub-btn" style={{ maxWidth: "14rem", padding: "0.75rem 1rem" }}>
+          📚 Learning Dashboard
+        </Link>
       </section>
 
       <h2 className="section-heading">Your Impact</h2>
@@ -48,12 +51,14 @@ function VolunteerDashboard() {
       </div>
 
       <h2 className="section-heading">Achievement Badges</h2>
-      <section className="unified-panel badges-row">
-        {BADGES.map((b) => (
-          <span key={b.label} className="badge-pill">
-            <span aria-hidden>{b.icon}</span> {b.label}
-          </span>
+      <section className="unified-panel achievement-panel">
+        {BADGES.slice(0, 4).map((b) => (
+          <Link key={b.label} to="/badges" className="achievement-tile">
+            <span className="achievement-icon">{b.icon}</span>
+            <span className="achievement-label">{b.label}</span>
+          </Link>
         ))}
+        <Link to="/badges" className="see-all-tile">See all →</Link>
       </section>
 
       <h2 className="section-heading">My Tasks</h2>
