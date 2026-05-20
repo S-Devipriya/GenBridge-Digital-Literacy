@@ -12,6 +12,10 @@ body {
     min-height: 100vh;
 }
 
+html.genbridge-text-large {
+    font-size: 112%;
+}
+
 input, 
 button, 
 a {
@@ -27,6 +31,8 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 }
 
