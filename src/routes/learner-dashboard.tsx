@@ -57,7 +57,9 @@ function LearnerDashboard() {
         </Link>
       </div>
 
-      <h2 className="section-heading" style={{ marginTop: "1.5rem" }}>Your Achievement Badges</h2>
+      <h2 className="section-heading" style={{ marginTop: "1.5rem" }}>
+        Your Achievement Badges
+      </h2>
       <section className="unified-panel achievement-panel">
         {BADGES.slice(0, 4).map((b) => (
           <Link key={b.label} to="/badges" className="achievement-tile">
@@ -65,7 +67,9 @@ function LearnerDashboard() {
             <span className="achievement-label">{b.label}</span>
           </Link>
         ))}
-        <Link to="/badges" className="see-all-tile">See all →</Link>
+        <Link to="/badges" className="see-all-tile">
+          See all →
+        </Link>
       </section>
 
       <div className="learner-big-buttons">
@@ -84,7 +88,9 @@ function LearnerDashboard() {
       </div>
 
       <div className="hub-pagination-row">
-        <Link to="/home" className="hub-btn">Return to Home Page</Link>
+        <Link to="/home" className="hub-btn">
+          Return to Home Page
+        </Link>
       </div>
     </>
   );

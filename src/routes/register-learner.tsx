@@ -26,31 +26,57 @@ function RegisterLearner() {
           <p className="auth-subtext">Welcome! Just a few details to get you started.</p>
           <form onSubmit={handleSubmit} className="auth-vertical-form">
             <div className="form-input-group">
-              <label htmlFor="rl-name" className="form-label-text">Full Name</label>
+              <label htmlFor="rl-name" className="form-label-text">
+                Full Name
+              </label>
               <input id="rl-name" name="name" required className="search-text-input" />
             </div>
             <div className="form-input-group">
-              <label htmlFor="rl-email" className="form-label-text">Email Address</label>
-              <input id="rl-email" type="email" name="email" required className="search-text-input" />
+              <label htmlFor="rl-email" className="form-label-text">
+                Email Address
+              </label>
+              <input
+                id="rl-email"
+                type="email"
+                name="email"
+                required
+                className="search-text-input"
+              />
             </div>
             <div className="form-input-group">
-              <label htmlFor="rl-phone" className="form-label-text">Phone Number</label>
+              <label htmlFor="rl-phone" className="form-label-text">
+                Phone Number
+              </label>
               <input id="rl-phone" type="tel" name="phone" className="search-text-input" />
             </div>
             <div className="form-input-group">
-              <label htmlFor="rl-password" className="form-label-text">Password</label>
-              <input id="rl-password" type="password" name="password" required className="search-text-input" />
+              <label htmlFor="rl-password" className="form-label-text">
+                Password
+              </label>
+              <input
+                id="rl-password"
+                type="password"
+                name="password"
+                required
+                className="search-text-input"
+              />
             </div>
-            <button type="submit" className="card-primary-btn">Create my account</button>
+            <button type="submit" className="card-primary-btn">
+              Create my account
+            </button>
           </form>
           <p className="auth-switch-text">
             Already have an account?{" "}
-            <Link to="/login" className="auth-inline-link">Log in here</Link>
+            <Link to="/login" className="auth-inline-link">
+              Log in here
+            </Link>
           </p>
         </div>
       </section>
       <div className="hub-pagination-row">
-        <Link to="/" className="hub-btn">Return to Home Page</Link>
+        <Link to="/" className="hub-btn">
+          Return to Home Page
+        </Link>
       </div>
     </>
   );

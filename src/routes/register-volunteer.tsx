@@ -39,16 +39,34 @@ function RegisterVolunteer() {
           </p>
           <form onSubmit={handleSubmit} className="auth-vertical-form">
             <div className="form-input-group">
-              <label htmlFor="rv-name" className="form-label-text">Full Name</label>
+              <label htmlFor="rv-name" className="form-label-text">
+                Full Name
+              </label>
               <input id="rv-name" name="name" required className="search-text-input" />
             </div>
             <div className="form-input-group">
-              <label htmlFor="rv-username" className="form-label-text">Username (Email)</label>
-              <input id="rv-username" type="email" name="username" required className="search-text-input" />
+              <label htmlFor="rv-username" className="form-label-text">
+                Username (Email)
+              </label>
+              <input
+                id="rv-username"
+                type="email"
+                name="username"
+                required
+                className="search-text-input"
+              />
             </div>
             <div className="form-input-group">
-              <label htmlFor="rv-password" className="form-label-text">Password</label>
-              <input id="rv-password" type="password" name="password" required className="search-text-input" />
+              <label htmlFor="rv-password" className="form-label-text">
+                Password
+              </label>
+              <input
+                id="rv-password"
+                type="password"
+                name="password"
+                required
+                className="search-text-input"
+              />
             </div>
 
             <label className="form-checkbox-row">
@@ -75,9 +93,13 @@ function RegisterVolunteer() {
                 </div>
 
                 <div className="form-input-group">
-                  <label htmlFor="rv-period" className="form-label-text">Internship Time Period</label>
+                  <label htmlFor="rv-period" className="form-label-text">
+                    Internship Time Period
+                  </label>
                   <select id="rv-period" name="period" className="form-select" defaultValue="">
-                    <option value="" disabled>Select a period</option>
+                    <option value="" disabled>
+                      Select a period
+                    </option>
                     <option>1 month</option>
                     <option>3 months</option>
                     <option>6 months</option>
@@ -86,9 +108,18 @@ function RegisterVolunteer() {
                 </div>
 
                 <div className="form-input-group">
-                  <label htmlFor="rv-availability" className="form-label-text">Time Availability</label>
-                  <select id="rv-availability" name="availability" className="form-select" defaultValue="">
-                    <option value="" disabled>Select availability</option>
+                  <label htmlFor="rv-availability" className="form-label-text">
+                    Time Availability
+                  </label>
+                  <select
+                    id="rv-availability"
+                    name="availability"
+                    className="form-select"
+                    defaultValue=""
+                  >
+                    <option value="" disabled>
+                      Select availability
+                    </option>
                     <option>Weekday mornings</option>
                     <option>Weekday evenings</option>
                     <option>Weekends</option>
@@ -98,16 +129,22 @@ function RegisterVolunteer() {
               </>
             )}
 
-            <button type="submit" className="card-primary-btn">Register</button>
+            <button type="submit" className="card-primary-btn">
+              Register
+            </button>
           </form>
           <p className="auth-switch-text">
             Already registered?{" "}
-            <Link to="/volunteer-login" className="auth-inline-link">Log in here</Link>
+            <Link to="/volunteer-login" className="auth-inline-link">
+              Log in here
+            </Link>
           </p>
         </div>
       </section>
       <div className="hub-pagination-row">
-        <Link to="/home" className="hub-btn">Return to Home Page</Link>
+        <Link to="/home" className="hub-btn">
+          Return to Home Page
+        </Link>
       </div>
     </>
   );
