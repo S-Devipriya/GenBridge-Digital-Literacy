@@ -1760,3 +1760,38 @@ a {
 .lessons-grid-with-welcome > article:first-child {
   grid-column: auto;
 }
+
+/* Center "Get Started" CTA vertically within welcome panel on / */
+.welcome-with-cta .welcome-landing-content {
+  gap: 2rem;
+}
+.welcome-cta-btn {
+  width: 100%;
+  max-width: 20rem;
+  padding: 0.875rem 1.5rem;
+}
+
+/* Home: tighter welcome + spacing after search */
+.welcome-tighter {
+  padding: 1rem 2rem !important;
+  min-height: auto !important;
+}
+.home-course-search {
+  margin-bottom: 1.25rem;
+}
+.home-grid-spaced {
+  margin-top: 0.5rem;
+}
+
+/* Search button: ensure label/icon is centered */
+.search-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-width: 64px;
+}
+.search-icon-only {
+  font-size: 1.5rem;
+  line-height: 1;
+}
