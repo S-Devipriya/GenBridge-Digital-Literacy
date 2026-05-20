@@ -7,17 +7,15 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <>
-      <section className="unified-panel welcome-landing-container">
+      <section className="unified-panel welcome-landing-container welcome-with-cta">
         <div className="welcome-landing-content">
           <h1 className="welcome-landing-heading">Welcome to GenBridge</h1>
           <p className="welcome-landing-mission">
             Bridging the digital gap across generations.
           </p>
+          <Link to="/home" className="hub-btn welcome-cta-btn">Get Started →</Link>
         </div>
       </section>
-      <div className="hub-pagination-row">
-        <Link to="/home" className="hub-btn">Get Started →</Link>
-      </div>
     </>
   );
 }
