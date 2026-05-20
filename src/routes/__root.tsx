@@ -169,6 +169,19 @@ function RootComponent() {
       <header className="header-bar">
         <Link to="/" className="brand-logo">☀ GenBridge</Link>
         <nav className="nav-links">
+          <div className="accessibility-text-controls" aria-label="Text size controls">
+            <button type="button" className={`text-size-btn ${!largeText ? "active-size" : ""}`} onClick={toggleTextSize}>A</button>
+            <button type="button" className={`text-size-btn ${largeText ? "active-size" : ""}`} onClick={toggleTextSize}>A+</button>
+          </div>
+          <label className="language-select-wrapper" aria-label="Select language">
+            🌐
+            <select className="language-dropdown-selector" value={language} onChange={(e) => updateLanguage(e.target.value)}>
+              <option value="en">English</option>
+              <option value="hi">हिन्दी</option>
+              <option value="ta">தமிழ்</option>
+              <option value="te">తెలుగు</option>
+            </select>
+          </label>
           {role ? (
             <>
               <Link to={dashboardLink} className="nav-btn-icon" aria-label="My Account" title="My Account">👤</Link>
