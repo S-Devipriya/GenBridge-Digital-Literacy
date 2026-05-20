@@ -13,6 +13,7 @@ function RegisterLearner() {
     if (typeof window !== "undefined") {
       localStorage.setItem("genbridge_role", "learner");
       localStorage.setItem("genbridge_learner", "1");
+      localStorage.setItem("genbridge_name", "Asha");
       window.dispatchEvent(new Event("genbridge-auth"));
     }
     navigate({ to: "/learner-dashboard" });
