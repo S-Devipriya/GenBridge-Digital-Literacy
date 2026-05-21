@@ -75,14 +75,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "GenBridge" },
+      { name: "description", content: "An innovative digital literacy app for senior citizens" },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "GenBridge" },
+      { property: "og:description", content: "An innovative digital literacy app for senior citizens" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "GenBridge" },
+      { name: "twitter:description", content: "An innovative digital literacy app for senior citizens" },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/bc286d67-92de-4253-a23d-1d8e005a53d0/id-preview-b0a867d9--b4457aa4-001e-4d99-8a5f-2ff7d7d7f276.lovable.app-1779266685078.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/bc286d67-92de-4253-a23d-1d8e005a53d0/id-preview-b0a867d9--b4457aa4-001e-4d99-8a5f-2ff7d7d7f276.lovable.app-1779266685078.png" },
     ],
     links: [
       {
