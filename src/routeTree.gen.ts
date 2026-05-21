@@ -20,6 +20,7 @@ import { Route as LearningPathsRouteImport } from './routes/learning-paths'
 import { Route as LearnerDashboardRouteImport } from './routes/learner-dashboard'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as HelplineRouteImport } from './routes/helpline'
+import { Route as HelpRouteImport } from './routes/help'
 import { Route as GroupChatRouteImport } from './routes/group-chat'
 import { Route as FeedbackRouteImport } from './routes/feedback'
 import { Route as CommunityMeetingsRouteImport } from './routes/community-meetings'
@@ -87,6 +88,11 @@ const HelplineRoute = HelplineRouteImport.update({
   path: '/helpline',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HelpRoute = HelpRouteImport.update({
+  id: '/help',
+  path: '/help',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GroupChatRoute = GroupChatRouteImport.update({
   id: '/group-chat',
   path: '/group-chat',
@@ -151,6 +157,7 @@ export interface FileRoutesByFullPath {
   '/community-meetings': typeof CommunityMeetingsRoute
   '/feedback': typeof FeedbackRoute
   '/group-chat': typeof GroupChatRoute
+  '/help': typeof HelpRoute
   '/helpline': typeof HelplineRoute
   '/home': typeof HomeRoute
   '/learner-dashboard': typeof LearnerDashboardRoute
@@ -175,6 +182,7 @@ export interface FileRoutesByTo {
   '/community-meetings': typeof CommunityMeetingsRoute
   '/feedback': typeof FeedbackRoute
   '/group-chat': typeof GroupChatRoute
+  '/help': typeof HelpRoute
   '/helpline': typeof HelplineRoute
   '/home': typeof HomeRoute
   '/learner-dashboard': typeof LearnerDashboardRoute
@@ -200,6 +208,7 @@ export interface FileRoutesById {
   '/community-meetings': typeof CommunityMeetingsRoute
   '/feedback': typeof FeedbackRoute
   '/group-chat': typeof GroupChatRoute
+  '/help': typeof HelpRoute
   '/helpline': typeof HelplineRoute
   '/home': typeof HomeRoute
   '/learner-dashboard': typeof LearnerDashboardRoute
@@ -226,6 +235,7 @@ export interface FileRouteTypes {
     | '/community-meetings'
     | '/feedback'
     | '/group-chat'
+    | '/help'
     | '/helpline'
     | '/home'
     | '/learner-dashboard'
@@ -250,6 +260,7 @@ export interface FileRouteTypes {
     | '/community-meetings'
     | '/feedback'
     | '/group-chat'
+    | '/help'
     | '/helpline'
     | '/home'
     | '/learner-dashboard'
@@ -274,6 +285,7 @@ export interface FileRouteTypes {
     | '/community-meetings'
     | '/feedback'
     | '/group-chat'
+    | '/help'
     | '/helpline'
     | '/home'
     | '/learner-dashboard'
@@ -299,6 +311,7 @@ export interface RootRouteChildren {
   CommunityMeetingsRoute: typeof CommunityMeetingsRoute
   FeedbackRoute: typeof FeedbackRoute
   GroupChatRoute: typeof GroupChatRoute
+  HelpRoute: typeof HelpRoute
   HelplineRoute: typeof HelplineRoute
   HomeRoute: typeof HomeRoute
   LearnerDashboardRoute: typeof LearnerDashboardRoute
@@ -395,6 +408,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HelplineRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/help': {
+      id: '/help'
+      path: '/help'
+      fullPath: '/help'
+      preLoaderRoute: typeof HelpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/group-chat': {
       id: '/group-chat'
       path: '/group-chat'
@@ -483,6 +503,7 @@ const rootRouteChildren: RootRouteChildren = {
   CommunityMeetingsRoute: CommunityMeetingsRoute,
   FeedbackRoute: FeedbackRoute,
   GroupChatRoute: GroupChatRoute,
+  HelpRoute: HelpRoute,
   HelplineRoute: HelplineRoute,
   HomeRoute: HomeRoute,
   LearnerDashboardRoute: LearnerDashboardRoute,
