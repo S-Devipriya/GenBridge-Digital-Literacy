@@ -16,9 +16,9 @@ function HelpPage() {
               Watch our short welcome video, or call our friendly helpline team.
             </p>
           </div>
-          <a href="tel:+911234567890" className="help-call-btn">
+          <Link to="/helpline" className="nav-btn">
             📞 Call Helpline
-          </a>
+          </Link>
         </div>
 
         <Link to="/video/$id" params={{ id: "welcome" }} className="help-video-card">
