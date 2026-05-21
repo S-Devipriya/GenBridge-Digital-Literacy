@@ -28,8 +28,8 @@ function ArticlePage() {
 
     (async () => {
       try {
-        const pdfjs: any = await import("pdfjs-dist/build/pdf.mjs");
-        const workerUrl = (await import("pdfjs-dist/build/pdf.worker.mjs?url")).default;
+        const pdfjs: any = await import(/* @vite-ignore */ "pdfjs-dist/build/pdf.mjs" as any);
+        const workerUrl = (await import(/* @vite-ignore */ "pdfjs-dist/build/pdf.worker.mjs?url" as any)).default;
         pdfjs.GlobalWorkerOptions.workerSrc = workerUrl;
 
         const loadingTask = pdfjs.getDocument(article.pdfUrl);
