@@ -207,6 +207,9 @@ function RootComponent() {
               <option value="te">తెలుగు</option>
             </select>
           </label>
+          <Link to="/help" className="nav-btn">
+            Help
+          </Link>
           {role ? (
             <>
               <Link
@@ -234,9 +237,6 @@ function RootComponent() {
               Log In
             </Link>
           )}
-          <Link to="/help" className="nav-btn nav-btn-help">
-            Help
-          </Link>
         </nav>
       </header>
       <main className="main-container">
