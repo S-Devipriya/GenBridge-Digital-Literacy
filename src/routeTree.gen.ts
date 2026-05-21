@@ -27,6 +27,7 @@ import { Route as BookmarksRouteImport } from './routes/bookmarks'
 import { Route as BadgesRouteImport } from './routes/badges'
 import { Route as AdminDashboardRouteImport } from './routes/admin-dashboard'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as VideoIdRouteImport } from './routes/video.$id'
 import { Route as TryoutIdRouteImport } from './routes/tryout.$id'
 import { Route as MeetingSignupIdRouteImport } from './routes/meeting-signup.$id'
 import { Route as CourseIdRouteImport } from './routes/course.$id'
@@ -121,6 +122,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VideoIdRoute = VideoIdRouteImport.update({
+  id: '/video/$id',
+  path: '/video/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TryoutIdRoute = TryoutIdRouteImport.update({
   id: '/tryout/$id',
   path: '/tryout/$id',
@@ -159,6 +165,7 @@ export interface FileRoutesByFullPath {
   '/course/$id': typeof CourseIdRoute
   '/meeting-signup/$id': typeof MeetingSignupIdRoute
   '/tryout/$id': typeof TryoutIdRoute
+  '/video/$id': typeof VideoIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -182,6 +189,7 @@ export interface FileRoutesByTo {
   '/course/$id': typeof CourseIdRoute
   '/meeting-signup/$id': typeof MeetingSignupIdRoute
   '/tryout/$id': typeof TryoutIdRoute
+  '/video/$id': typeof VideoIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -206,6 +214,7 @@ export interface FileRoutesById {
   '/course/$id': typeof CourseIdRoute
   '/meeting-signup/$id': typeof MeetingSignupIdRoute
   '/tryout/$id': typeof TryoutIdRoute
+  '/video/$id': typeof VideoIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -231,6 +240,7 @@ export interface FileRouteTypes {
     | '/course/$id'
     | '/meeting-signup/$id'
     | '/tryout/$id'
+    | '/video/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -254,6 +264,7 @@ export interface FileRouteTypes {
     | '/course/$id'
     | '/meeting-signup/$id'
     | '/tryout/$id'
+    | '/video/$id'
   id:
     | '__root__'
     | '/'
@@ -277,6 +288,7 @@ export interface FileRouteTypes {
     | '/course/$id'
     | '/meeting-signup/$id'
     | '/tryout/$id'
+    | '/video/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -301,6 +313,7 @@ export interface RootRouteChildren {
   CourseIdRoute: typeof CourseIdRoute
   MeetingSignupIdRoute: typeof MeetingSignupIdRoute
   TryoutIdRoute: typeof TryoutIdRoute
+  VideoIdRoute: typeof VideoIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -431,6 +444,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/video/$id': {
+      id: '/video/$id'
+      path: '/video/$id'
+      fullPath: '/video/$id'
+      preLoaderRoute: typeof VideoIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tryout/$id': {
       id: '/tryout/$id'
       path: '/tryout/$id'
@@ -477,6 +497,7 @@ const rootRouteChildren: RootRouteChildren = {
   CourseIdRoute: CourseIdRoute,
   MeetingSignupIdRoute: MeetingSignupIdRoute,
   TryoutIdRoute: TryoutIdRoute,
+  VideoIdRoute: VideoIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
