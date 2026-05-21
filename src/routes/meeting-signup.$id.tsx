@@ -56,6 +56,7 @@ function MeetingSignup() {
       </section>
       <div className="hub-pagination-row">
         <Link to="/community-meetings" className="hub-btn">Back to Meetings</Link>
+        <Link to="/home" className="hub-btn">Back to Home Page</Link>
       </div>
     </>
   );
