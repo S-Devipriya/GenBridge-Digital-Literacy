@@ -1808,3 +1808,113 @@ a {
   align-items: center;
   justify-content: center;
 }
+
+/* ===== Help nav button (yellow) ===== */
+.nav-btn-help {
+  background: #fbbf24 !important;
+  color: #1f2937 !important;
+  border-color: #f59e0b !important;
+}
+.nav-btn-help:hover { background: #f59e0b !important; }
+
+/* ===== Video Player ===== */
+.video-player-panel { padding: 2rem; }
+.video-stage {
+  margin-top: 1.5rem;
+  background: #0b0b0b;
+  border-radius: 1rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.video-element {
+  width: 100%;
+  height: auto;
+  max-height: 60vh;
+  background: #000;
+  display: block;
+}
+.video-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: #111827;
+  color: #f9fafb;
+  flex-wrap: wrap;
+}
+.video-ctrl-btn {
+  background: #1f2937;
+  color: #f9fafb;
+  border: 2px solid #374151;
+  border-radius: 0.5rem;
+  padding: 0.45rem 0.75rem;
+  font-size: 1.125rem;
+  cursor: pointer;
+  min-width: 48px;
+}
+.video-ctrl-btn:hover { background: #374151; }
+.video-progress-bar { flex: 1; min-width: 140px; cursor: pointer; }
+.video-time-label { font-variant-numeric: tabular-nums; font-size: 0.95rem; }
+.video-rate-select {
+  background: #1f2937;
+  color: #f9fafb;
+  border: 2px solid #374151;
+  border-radius: 0.5rem;
+  padding: 0.45rem 0.5rem;
+  font-size: 0.95rem;
+}
+
+/* ===== Help Page ===== */
+.help-page-panel { padding: 2rem; }
+.help-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+.help-page-heading { font-size: 1.75rem; font-weight: 700; margin: 0 0 0.5rem 0; }
+.help-page-sub { margin: 0; color: #4b5563; }
+.help-call-btn {
+  background: #fbbf24;
+  color: #1f2937;
+  font-weight: 700;
+  padding: 0.85rem 1.5rem;
+  border-radius: 0.75rem;
+  border: 2px solid #f59e0b;
+  text-decoration: none;
+  font-size: 1.05rem;
+  white-space: nowrap;
+}
+.help-call-btn:hover { background: #f59e0b; }
+.help-video-card {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  background: #eff6ff;
+  border: 2px solid #bfdbfe;
+  border-radius: 1rem;
+  text-decoration: none;
+  color: inherit;
+  align-items: center;
+}
+.help-video-card:hover { background: #dbeafe; }
+.help-video-thumb {
+  flex-shrink: 0;
+  width: 140px;
+  height: 90px;
+  background: #1e3a8a;
+  color: #fff;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+.help-video-info { display: flex; flex-direction: column; gap: 0.4rem; }
+
+/* ===== Standalone Article ===== */
+.article-standalone-panel { padding: 2rem; position: relative; }
+.article-standalone-body { max-width: 720px; margin: 0 auto; }
