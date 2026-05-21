@@ -55,6 +55,7 @@ function LearningPaths() {
 
       <div className="hub-pagination-row">
         <Link to="/lessons" className="hub-btn">Back to Lessons</Link>
+        <Link to="/home" className="hub-btn">Back to Home Page</Link>
       </div>
     </>
   );

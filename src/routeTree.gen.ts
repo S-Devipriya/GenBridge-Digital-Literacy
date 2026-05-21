@@ -20,6 +20,7 @@ import { Route as LearningPathsRouteImport } from './routes/learning-paths'
 import { Route as LearnerDashboardRouteImport } from './routes/learner-dashboard'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as HelplineRouteImport } from './routes/helpline'
+import { Route as HelpRouteImport } from './routes/help'
 import { Route as GroupChatRouteImport } from './routes/group-chat'
 import { Route as FeedbackRouteImport } from './routes/feedback'
 import { Route as CommunityMeetingsRouteImport } from './routes/community-meetings'
@@ -27,9 +28,11 @@ import { Route as BookmarksRouteImport } from './routes/bookmarks'
 import { Route as BadgesRouteImport } from './routes/badges'
 import { Route as AdminDashboardRouteImport } from './routes/admin-dashboard'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as VideoIdRouteImport } from './routes/video.$id'
 import { Route as TryoutIdRouteImport } from './routes/tryout.$id'
 import { Route as MeetingSignupIdRouteImport } from './routes/meeting-signup.$id'
 import { Route as CourseIdRouteImport } from './routes/course.$id'
+import { Route as ArticleIdRouteImport } from './routes/article.$id'
 
 const VolunteerLoginRoute = VolunteerLoginRouteImport.update({
   id: '/volunteer-login',
@@ -86,6 +89,11 @@ const HelplineRoute = HelplineRouteImport.update({
   path: '/helpline',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HelpRoute = HelpRouteImport.update({
+  id: '/help',
+  path: '/help',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GroupChatRoute = GroupChatRouteImport.update({
   id: '/group-chat',
   path: '/group-chat',
@@ -121,6 +129,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VideoIdRoute = VideoIdRouteImport.update({
+  id: '/video/$id',
+  path: '/video/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TryoutIdRoute = TryoutIdRouteImport.update({
   id: '/tryout/$id',
   path: '/tryout/$id',
@@ -136,6 +149,11 @@ const CourseIdRoute = CourseIdRouteImport.update({
   path: '/course/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ArticleIdRoute = ArticleIdRouteImport.update({
+  id: '/article/$id',
+  path: '/article/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -145,6 +163,7 @@ export interface FileRoutesByFullPath {
   '/community-meetings': typeof CommunityMeetingsRoute
   '/feedback': typeof FeedbackRoute
   '/group-chat': typeof GroupChatRoute
+  '/help': typeof HelpRoute
   '/helpline': typeof HelplineRoute
   '/home': typeof HomeRoute
   '/learner-dashboard': typeof LearnerDashboardRoute
@@ -156,9 +175,11 @@ export interface FileRoutesByFullPath {
   '/register-volunteer': typeof RegisterVolunteerRoute
   '/volunteer-dashboard': typeof VolunteerDashboardRoute
   '/volunteer-login': typeof VolunteerLoginRoute
+  '/article/$id': typeof ArticleIdRoute
   '/course/$id': typeof CourseIdRoute
   '/meeting-signup/$id': typeof MeetingSignupIdRoute
   '/tryout/$id': typeof TryoutIdRoute
+  '/video/$id': typeof VideoIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -168,6 +189,7 @@ export interface FileRoutesByTo {
   '/community-meetings': typeof CommunityMeetingsRoute
   '/feedback': typeof FeedbackRoute
   '/group-chat': typeof GroupChatRoute
+  '/help': typeof HelpRoute
   '/helpline': typeof HelplineRoute
   '/home': typeof HomeRoute
   '/learner-dashboard': typeof LearnerDashboardRoute
@@ -179,9 +201,11 @@ export interface FileRoutesByTo {
   '/register-volunteer': typeof RegisterVolunteerRoute
   '/volunteer-dashboard': typeof VolunteerDashboardRoute
   '/volunteer-login': typeof VolunteerLoginRoute
+  '/article/$id': typeof ArticleIdRoute
   '/course/$id': typeof CourseIdRoute
   '/meeting-signup/$id': typeof MeetingSignupIdRoute
   '/tryout/$id': typeof TryoutIdRoute
+  '/video/$id': typeof VideoIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -192,6 +216,7 @@ export interface FileRoutesById {
   '/community-meetings': typeof CommunityMeetingsRoute
   '/feedback': typeof FeedbackRoute
   '/group-chat': typeof GroupChatRoute
+  '/help': typeof HelpRoute
   '/helpline': typeof HelplineRoute
   '/home': typeof HomeRoute
   '/learner-dashboard': typeof LearnerDashboardRoute
@@ -203,9 +228,11 @@ export interface FileRoutesById {
   '/register-volunteer': typeof RegisterVolunteerRoute
   '/volunteer-dashboard': typeof VolunteerDashboardRoute
   '/volunteer-login': typeof VolunteerLoginRoute
+  '/article/$id': typeof ArticleIdRoute
   '/course/$id': typeof CourseIdRoute
   '/meeting-signup/$id': typeof MeetingSignupIdRoute
   '/tryout/$id': typeof TryoutIdRoute
+  '/video/$id': typeof VideoIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -217,6 +244,7 @@ export interface FileRouteTypes {
     | '/community-meetings'
     | '/feedback'
     | '/group-chat'
+    | '/help'
     | '/helpline'
     | '/home'
     | '/learner-dashboard'
@@ -228,9 +256,11 @@ export interface FileRouteTypes {
     | '/register-volunteer'
     | '/volunteer-dashboard'
     | '/volunteer-login'
+    | '/article/$id'
     | '/course/$id'
     | '/meeting-signup/$id'
     | '/tryout/$id'
+    | '/video/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -240,6 +270,7 @@ export interface FileRouteTypes {
     | '/community-meetings'
     | '/feedback'
     | '/group-chat'
+    | '/help'
     | '/helpline'
     | '/home'
     | '/learner-dashboard'
@@ -251,9 +282,11 @@ export interface FileRouteTypes {
     | '/register-volunteer'
     | '/volunteer-dashboard'
     | '/volunteer-login'
+    | '/article/$id'
     | '/course/$id'
     | '/meeting-signup/$id'
     | '/tryout/$id'
+    | '/video/$id'
   id:
     | '__root__'
     | '/'
@@ -263,6 +296,7 @@ export interface FileRouteTypes {
     | '/community-meetings'
     | '/feedback'
     | '/group-chat'
+    | '/help'
     | '/helpline'
     | '/home'
     | '/learner-dashboard'
@@ -274,9 +308,11 @@ export interface FileRouteTypes {
     | '/register-volunteer'
     | '/volunteer-dashboard'
     | '/volunteer-login'
+    | '/article/$id'
     | '/course/$id'
     | '/meeting-signup/$id'
     | '/tryout/$id'
+    | '/video/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -287,6 +323,7 @@ export interface RootRouteChildren {
   CommunityMeetingsRoute: typeof CommunityMeetingsRoute
   FeedbackRoute: typeof FeedbackRoute
   GroupChatRoute: typeof GroupChatRoute
+  HelpRoute: typeof HelpRoute
   HelplineRoute: typeof HelplineRoute
   HomeRoute: typeof HomeRoute
   LearnerDashboardRoute: typeof LearnerDashboardRoute
@@ -298,9 +335,11 @@ export interface RootRouteChildren {
   RegisterVolunteerRoute: typeof RegisterVolunteerRoute
   VolunteerDashboardRoute: typeof VolunteerDashboardRoute
   VolunteerLoginRoute: typeof VolunteerLoginRoute
+  ArticleIdRoute: typeof ArticleIdRoute
   CourseIdRoute: typeof CourseIdRoute
   MeetingSignupIdRoute: typeof MeetingSignupIdRoute
   TryoutIdRoute: typeof TryoutIdRoute
+  VideoIdRoute: typeof VideoIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -382,6 +421,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HelplineRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/help': {
+      id: '/help'
+      path: '/help'
+      fullPath: '/help'
+      preLoaderRoute: typeof HelpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/group-chat': {
       id: '/group-chat'
       path: '/group-chat'
@@ -431,6 +477,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/video/$id': {
+      id: '/video/$id'
+      path: '/video/$id'
+      fullPath: '/video/$id'
+      preLoaderRoute: typeof VideoIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tryout/$id': {
       id: '/tryout/$id'
       path: '/tryout/$id'
@@ -452,6 +505,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CourseIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/article/$id': {
+      id: '/article/$id'
+      path: '/article/$id'
+      fullPath: '/article/$id'
+      preLoaderRoute: typeof ArticleIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -463,6 +523,7 @@ const rootRouteChildren: RootRouteChildren = {
   CommunityMeetingsRoute: CommunityMeetingsRoute,
   FeedbackRoute: FeedbackRoute,
   GroupChatRoute: GroupChatRoute,
+  HelpRoute: HelpRoute,
   HelplineRoute: HelplineRoute,
   HomeRoute: HomeRoute,
   LearnerDashboardRoute: LearnerDashboardRoute,
@@ -474,20 +535,12 @@ const rootRouteChildren: RootRouteChildren = {
   RegisterVolunteerRoute: RegisterVolunteerRoute,
   VolunteerDashboardRoute: VolunteerDashboardRoute,
   VolunteerLoginRoute: VolunteerLoginRoute,
+  ArticleIdRoute: ArticleIdRoute,
   CourseIdRoute: CourseIdRoute,
   MeetingSignupIdRoute: MeetingSignupIdRoute,
   TryoutIdRoute: TryoutIdRoute,
+  VideoIdRoute: VideoIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

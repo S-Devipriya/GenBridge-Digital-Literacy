@@ -234,6 +234,9 @@ function RootComponent() {
               Log In
             </Link>
           )}
+          <Link to="/help" className="nav-btn nav-btn-help">
+            Help
+          </Link>
         </nav>
       </header>
       <main className="main-container">
