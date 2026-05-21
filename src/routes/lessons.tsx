@@ -38,6 +38,7 @@ const LESSONS: Lesson[] = [
     tagClass: "read-tag",
     cardClass: "card-articles",
     mediaIcon: "📄",
+    link: "/article/logging-in",
   },
   {
     title: "Join a Google Meet",
@@ -91,6 +92,7 @@ function Lessons() {
   const [query, setQuery] = useState("");
 
   const visible = filter === "All" ? LESSONS : LESSONS.filter((l) => l.type === filter);
+  const showWelcome = filter === "All" || filter === "Videos";
 
   function handleVoice() {
     alert("Voice search coming soon — please tell us what you want to learn.");
@@ -145,21 +147,26 @@ function Lessons() {
         <h3 className="hub-main-title">Start with our recommended lessons</h3>
 
         <div className="three-column-lessons-grid lessons-grid-with-welcome">
-          <article className="unified-panel learning-card card-videos">
-            <div className="card-media-frame">
-              <span className="media-indicator-icon">▶</span>
-            </div>
-            <div className="card-text-block">
-              <span className="badge-tag welcome-tag">Welcome</span>
-              <h4 className="card-main-heading">Welcome to GenBridge</h4>
-              <p className="card-body-prose">
-                A short welcome video showing how to navigate our website.
-              </p>
-            </div>
-            <div className="card-button-anchor">
-              <button className="card-primary-btn">Watch Video</button>
-            </div>
-          </article>
+          {showWelcome && (
+            <article className="unified-panel learning-card card-videos">
+              <div className="card-media-frame">
+                <span className="media-indicator-icon">▶</span>
+              </div>
+              <div className="card-text-block">
+                <span className="badge-tag welcome-tag">Welcome</span>
+                <span className="badge-tag watch-tag" style={{ marginLeft: "0.5rem" }}>▶ Watch</span>
+                <h4 className="card-main-heading">Welcome to GenBridge</h4>
+                <p className="card-body-prose">
+                  A short welcome video showing how to navigate our website.
+                </p>
+              </div>
+              <div className="card-button-anchor">
+                <Link to="/video/$id" params={{ id: "welcome" }} className="card-primary-btn">
+                  Watch Video
+                </Link>
+              </div>
+            </article>
+          )}
           {visible.map((l) => (
             <article key={l.title} className={`unified-panel lesson-card-simple ${l.cardClass}`}>
               <div className="card-media-frame">
